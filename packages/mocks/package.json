@@ -1,0 +1,24 @@
+{
+  "name": "@repo/mocks",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./server": "./src/server.ts",
+    "./browser": "./src/browser.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "generate:component": "turbo gen react-component",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "eslint": "catalog:",
+    "typescript": "catalog:",
+    "@types/node": "catalog:",
+    "msw": "catalog:"
+  },
+  "dependencies": {
+  }
+}

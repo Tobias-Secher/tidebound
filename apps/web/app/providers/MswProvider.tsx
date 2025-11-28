@@ -2,13 +2,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import {isMswEnabled} from '@repo/utils';
 
 export function MswProvider({ children }: { children: React.ReactNode }) {
   const [mswReady, setMswReady] = useState(false)
 
   useEffect(() => {
     const init = async () => {
-      if (process.env.NODE_ENV === 'development') {
+      if (isMswEnabled) {
         const { worker } = await import('@repo/mocks/browser')
         await worker.start({
           onUnhandledRequest: 'bypass',

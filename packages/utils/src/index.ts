@@ -1,0 +1,1 @@
+export {isMswEnabled} from './msw.utils'

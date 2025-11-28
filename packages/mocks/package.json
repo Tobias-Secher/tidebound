@@ -1,9 +1,10 @@
 {
-  "name": "@repo/templates",
+  "name": "@repo/mocks",
   "version": "0.0.0",
   "private": true,
   "exports": {
-    ".": "./src/index.ts"
+    "./server": "./src/server.ts",
+    "./browser": "./src/browser.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -13,14 +14,11 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "catalog:",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
     "eslint": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "@types/node": "catalog:",
+    "msw": "catalog:"
   },
   "dependencies": {
-    "react": "catalog:",
-    "react-dom": "catalog:"
   }
 }

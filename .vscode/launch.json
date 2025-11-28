@@ -1,0 +1,21 @@
+{
+  // This starts the server with pnpm and enables debugging
+  // Just start the debugger in VSCode and then refresh your browser
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Next.js",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["dev"],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "NODE_OPTIONS": "--inspect"
+      },
+      "console": "integratedTerminal",
+      "restart": true,
+      "protocol": "inspector"
+    }
+  ]
+}

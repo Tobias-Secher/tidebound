@@ -13,7 +13,8 @@
     "next-env.d.ts",
     "next.config.js",
     ".next/types/**/*.ts",
-    "types.d.ts"
+    "types.d.ts",
+    "instrumentation.js"
   ],
   "exclude": [
     "node_modules"

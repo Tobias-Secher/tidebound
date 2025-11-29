@@ -1,0 +1,23 @@
+{
+  "name": "@repo/jest-config",
+  "version": "0.0.0",
+  "private": true,
+  "main": "jest.base.config.js",
+  "exports": {
+    "./base": "./jest.base.config.js",
+    "./nextjs": "./jest.nextjs.config.js",
+    "./setup": "./jest.setup.ts",
+    "./setup-msw": "./jest.setup.msw.ts"
+  },
+  "dependencies": {
+    "@swc/jest": "catalog:",
+    "@swc/core": "catalog:",
+    "@testing-library/jest-dom": "catalog:",
+    "@testing-library/react": "catalog:",
+    "identity-obj-proxy": "catalog:",
+    "jest": "catalog:",
+    "jest-environment-jsdom": "catalog:",
+    "msw": "catalog:",
+    "@types/jest": "catalog:"
+  }
+}

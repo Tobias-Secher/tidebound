@@ -289,9 +289,6 @@ importers:
       jest-environment-jsdom:
         specifier: 'catalog:'
         version: 30.2.0
-      msw:
-        specifier: 'catalog:'
-        version: 2.12.3(@types/node@22.15.3)(typescript@5.9.2)
 
   packages/mocks:
     devDependencies:
@@ -344,6 +341,9 @@ importers:
       '@testing-library/user-event':
         specifier: 'catalog:'
         version: 14.6.1(@testing-library/dom@10.4.1)
+      '@types/jest':
+        specifier: 'catalog:'
+        version: 29.5.14
       '@types/node':
         specifier: 'catalog:'
         version: 22.15.3
@@ -386,6 +386,18 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@testing-library/jest-dom':
+        specifier: 'catalog:'
+        version: 6.9.1
+      '@testing-library/react':
+        specifier: 'catalog:'
+        version: 16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@testing-library/user-event':
+        specifier: 'catalog:'
+        version: 14.6.1(@testing-library/dom@10.4.1)
+      '@types/jest':
+        specifier: 'catalog:'
+        version: 29.5.14
       '@types/node':
         specifier: 'catalog:'
         version: 22.15.3
@@ -398,6 +410,12 @@ importers:
       eslint:
         specifier: 'catalog:'
         version: 9.39.1
+      jest:
+        specifier: 'catalog:'
+        version: 30.2.0(@types/node@22.15.3)
+      jest-environment-jsdom:
+        specifier: 'catalog:'
+        version: 30.2.0
       typescript:
         specifier: 'catalog:'
         version: 5.9.2

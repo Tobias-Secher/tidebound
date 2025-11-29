@@ -5,9 +5,8 @@
   "main": "jest.base.config.js",
   "exports": {
     "./base": "./jest.base.config.js",
-    "./nextjs": "./jest.nextjs.config.js",
     "./setup": "./jest.setup.ts",
-    "./setup-msw": "./jest.setup.msw.ts"
+    "./shared": "./shared.js"
   },
   "dependencies": {
     "@swc/jest": "catalog:",
@@ -17,7 +16,6 @@
     "identity-obj-proxy": "catalog:",
     "jest": "catalog:",
     "jest-environment-jsdom": "catalog:",
-    "msw": "catalog:",
     "@types/jest": "catalog:"
   }
 }

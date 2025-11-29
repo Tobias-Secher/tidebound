@@ -1,3 +1,5 @@
+const { WORKSPACE_MAPPINGS, ASSET_MOCKS } = require('./shared');
+
 module.exports = {
   // Setup files
   setupFilesAfterEnv: ['<rootDir>/../../packages/jest-config/jest.setup.ts'],
@@ -9,20 +11,10 @@ module.exports = {
     '<rootDir>/src/**/?(*.)+(spec|test).[jt]s?(x)',
   ],
 
-  // Module resolution for cross-workspace imports
+  // Module resolution for cross-workspace imports and assets
   moduleNameMapper: {
-    // CSS Modules
-    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
-
-    // Regular CSS/asset files
-    '^.+\\.(css|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
-    '^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$': '<rootDir>/__mocks__/fileMock.js',
-
-    // Workspace package aliases - CRITICAL FOR CROSS-WORKSPACE IMPORTS
-    '^@repo/ui/(.*)$': '<rootDir>/../../packages/ui/src/$1',
-    '^@repo/utils/(.*)$': '<rootDir>/../../packages/utils/src/$1',
-    '^@repo/templates/(.*)$': '<rootDir>/../../packages/templates/src/$1',
-    '^@repo/mocks/(.*)$': '<rootDir>/../../packages/mocks/src/$1',
+    ...ASSET_MOCKS,
+    ...WORKSPACE_MAPPINGS,
   },
 
   // SWC transformation (faster than ts-jest)

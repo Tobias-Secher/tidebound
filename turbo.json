@@ -14,8 +14,13 @@
       "dependsOn": ["^check-types"]
     },
     "test": {
-      "dependsOn": ["^build"],
-      "inputs": ["src/**", "app/**", "jest.config.js"],
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx}",
+        "app/**/*.{ts,tsx,js,jsx}",
+        "jest.config.{js,cjs}",
+        "**/__tests__/**",
+        "**/*.{test,spec}.{ts,tsx,js,jsx}"
+      ],
       "outputs": ["coverage/**"]
     },
     "dev": {

@@ -9,9 +9,9 @@
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
     "check-types": "tsc --noEmit",
-    "test": "jest --passWithNoTests",
-    "test:watch": "jest --watch --passWithNoTests",
-    "test:coverage": "jest --coverage --passWithNoTests"
+    "test": "jest --passWithNoTests --maxWorkers=50%",
+    "test:watch": "jest --watch --passWithNoTests --maxWorkers=25%",
+    "test:coverage": "jest --coverage --passWithNoTests --maxWorkers=50%"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -20,6 +20,7 @@
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
     "@testing-library/user-event": "catalog:",
+    "@types/jest": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",

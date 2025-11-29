@@ -1,4 +1,5 @@
 const nextJest = require('next/jest');
+const { WORKSPACE_MAPPINGS } = require('@repo/jest-config/shared');
 
 const createJestConfig = nextJest({
   dir: './',
@@ -19,11 +20,10 @@ const customJestConfig = {
   ],
 
   moduleNameMapper: {
+    // Next.js handles CSS modules, but keep for consistency
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
-    '^@repo/ui/(.*)$': '<rootDir>/../../packages/ui/src/$1',
-    '^@repo/utils/(.*)$': '<rootDir>/../../packages/utils/src/$1',
-    '^@repo/templates/(.*)$': '<rootDir>/../../packages/templates/src/$1',
-    '^@repo/mocks/(.*)$': '<rootDir>/../../packages/mocks/src/$1',
+    // Use shared workspace mappings
+    ...WORKSPACE_MAPPINGS,
   },
 
   collectCoverageFrom: [

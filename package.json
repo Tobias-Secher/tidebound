@@ -10,7 +10,7 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "test:coverage": "turbo run test:coverage",
-    "storybook": "turbo run storybook -- --no-open",
+    "storybook": "turbo run storybook",
     "build-storybook": "turbo run build-storybook"
   },
   "devDependencies": {

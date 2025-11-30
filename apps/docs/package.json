@@ -4,7 +4,6 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "pnpm storybook",
     "build": "storybook build",
     "lint": "eslint --max-warnings 0",
     "check-types": "tsc --noEmit",

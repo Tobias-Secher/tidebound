@@ -4,11 +4,11 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "storybook dev -p 6006 --no-open",
+    "dev": "pnpm storybook",
     "build": "storybook build",
     "lint": "eslint --max-warnings 0",
     "check-types": "tsc --noEmit",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build"
   },
   "dependencies": {

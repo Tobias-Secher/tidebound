@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import styles from "./button.module.css";
 
-interface ButtonProps {
+export interface ButtonProps {
   children: ReactNode;
   className?: string;
   appName: string;

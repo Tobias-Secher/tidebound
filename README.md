@@ -355,3 +355,304 @@ This gives you full autocomplete for:
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
 - [Testing Library Queries](https://testing-library.com/docs/queries/about)
 - [Common Testing Mistakes](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library)
+
+## Storybook
+
+This project uses [Storybook](https://storybook.js.org/) for component development and documentation. Storybook provides an isolated environment to build, test, and showcase UI components.
+
+### Architecture Overview
+
+The Storybook setup is located in the `apps/docs` workspace:
+
+```
+apps/docs/
+├── .storybook/
+│   ├── main.ts              # Storybook configuration
+│   ├── preview.ts           # Global decorators and parameters
+│   ├── tsconfig.json        # TypeScript config for Storybook
+│   └── css-modules.d.ts     # CSS modules type definitions
+└── stories/
+    ├── ui/                  # Stories for @repo/ui components
+    │   ├── Button.stories.tsx
+    │   ├── Card.stories.tsx
+    │   └── Code.stories.tsx
+    └── templates/           # Stories for @repo/templates
+        └── Button.stories.tsx
+```
+
+### Key Features
+
+**1. Component-Driven Development**
+- Develop UI components in isolation
+- Test different states and variants
+- Rapid prototyping without running the full app
+
+**2. Automatic Documentation**
+- Auto-generated docs from TypeScript prop types
+- Interactive controls for component props
+- Live code examples
+
+**3. Cross-Workspace Component Library**
+- Import and document components from `@repo/ui`
+- Import and document components from `@repo/templates`
+- Centralized component showcase
+
+**4. Visual Testing with Chromatic**
+- Automated visual regression testing
+- Integrated via `pnpm chromatic` script
+- Tracks UI changes across commits
+
+### Running Storybook
+
+**Start Storybook dev server:**
+```bash
+pnpm storybook
+```
+
+This runs Storybook on `http://localhost:6006`
+
+**Build static Storybook:**
+```bash
+pnpm build-storybook
+```
+
+**Run Chromatic visual tests:**
+```bash
+cd apps/docs
+pnpm chromatic
+```
+
+### Configuration
+
+#### Main Configuration (apps/docs/.storybook/main.ts)
+
+The main config defines:
+- **Story locations**: `../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)`
+- **Addons**: Essential addons for controls, interactions, docs, and onboarding
+- **Framework**: React with Vite builder
+- **TypeScript**: React-docgen-typescript for prop extraction
+
+Key settings:
+```typescript
+{
+  framework: "@storybook/react-vite",
+  docs: { autodocs: "tag" },
+  typescript: {
+    reactDocgen: "react-docgen-typescript"
+  }
+}
+```
+
+#### Preview Configuration (apps/docs/.storybook/preview.ts)
+
+Global story parameters:
+- **Controls**: Automatic control type matching for colors and dates
+- **Backgrounds**: Light and dark theme options
+- **Layout**: Configurable layout per story (centered, fullscreen, padded)
+
+### Writing Stories
+
+Stories are written using the Component Story Format (CSF) 3.0:
+
+```typescript
+// apps/docs/stories/ui/Button.stories.tsx
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from '@repo/ui/button';
+
+const meta = {
+  title: 'UI/Button',
+  component: Button,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+  argTypes: {
+    appName: {
+      control: 'text',
+      description: 'The name of the app using the button',
+    },
+  },
+} satisfies Meta<typeof Button>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    appName: 'Storybook',
+    children: 'Click me',
+  },
+};
+```
+
+### Story Organization
+
+Stories are organized by package:
+
+**UI Components (`@repo/ui`):**
+- `stories/ui/Button.stories.tsx`
+- `stories/ui/Card.stories.tsx`
+- `stories/ui/Code.stories.tsx`
+
+**Template Components (`@repo/templates`):**
+- `stories/templates/Button.stories.tsx`
+
+### Adding New Stories
+
+1. **Create a new story file** in `apps/docs/stories/`:
+   ```typescript
+   // apps/docs/stories/ui/NewComponent.stories.tsx
+   import type { Meta, StoryObj } from '@storybook/react';
+   import { NewComponent } from '@repo/ui/new-component';
+
+   const meta = {
+     title: 'UI/NewComponent',
+     component: NewComponent,
+     tags: ['autodocs'],
+   } satisfies Meta<typeof NewComponent>;
+
+   export default meta;
+   type Story = StoryObj<typeof meta>;
+
+   export const Default: Story = {
+     args: {
+       // component props
+     },
+   };
+   ```
+
+2. **Storybook auto-discovers** the story (no config changes needed)
+
+3. **View in browser** at `http://localhost:6006`
+
+### Story Features
+
+**Tags:**
+- `['autodocs']`: Auto-generate documentation page from props
+
+**Parameters:**
+- `layout: 'centered'`: Center component in canvas
+- `layout: 'fullscreen'`: Full viewport layout
+- `layout: 'padded'`: Default padding
+
+**ArgTypes:**
+Customize controls for props:
+```typescript
+argTypes: {
+  variant: {
+    control: 'select',
+    options: ['primary', 'secondary'],
+    description: 'Button style variant',
+  },
+  disabled: {
+    control: 'boolean',
+  },
+}
+```
+
+### Chromatic Integration
+
+Chromatic provides automated visual regression testing:
+
+**Configuration:**
+- Project token configured in `apps/docs/package.json`
+- Runs via: `pnpm chromatic`
+
+**Workflow:**
+1. Push changes to repository
+2. Run `pnpm chromatic` (or configure CI)
+3. Chromatic captures screenshots of all stories
+4. Compare against baseline
+5. Review and approve changes
+
+**Benefits:**
+- Catch unintended visual changes
+- Review UI changes in PRs
+- Maintain visual consistency
+
+### Monorepo Integration
+
+Storybook seamlessly imports components from workspace packages:
+
+```typescript
+// Import from @repo/ui
+import { Button } from '@repo/ui/button';
+
+// Import from @repo/templates
+import { TemplateButton } from '@repo/templates/button';
+```
+
+The Vite builder resolves workspace dependencies automatically.
+
+### Addons
+
+**Installed addons:**
+- `@storybook/addon-essentials`: Core features (docs, controls, actions, viewport, backgrounds)
+- `@storybook/addon-interactions`: Component interaction testing
+- `@storybook/addon-links`: Navigate between stories
+- `@storybook/addon-onboarding`: First-time user guide
+
+### Best Practices
+
+**1. One Story Per State:**
+```typescript
+export const Default: Story = { args: { variant: 'primary' } };
+export const Secondary: Story = { args: { variant: 'secondary' } };
+export const Disabled: Story = { args: { disabled: true } };
+```
+
+**2. Meaningful Story Names:**
+- Use descriptive names that indicate the component state
+- `WithCustomClass`, `Loading`, `Error`, etc.
+
+**3. Document Props:**
+```typescript
+argTypes: {
+  onClick: {
+    description: 'Callback fired when button is clicked',
+  },
+}
+```
+
+**4. Use Tags for Auto-docs:**
+```typescript
+tags: ['autodocs']  // Generates docs page automatically
+```
+
+**5. Test Interactions:**
+```typescript
+import { userEvent, within } from '@storybook/test';
+
+export const ClickTest: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button'));
+  },
+};
+```
+
+### Troubleshooting
+
+**"Module not found" errors:**
+- Check workspace dependencies are installed: `pnpm install`
+- Verify component exports in package `index.ts`
+
+**TypeScript errors in stories:**
+- Check `apps/docs/.storybook/tsconfig.json` extends project config
+- Ensure `@storybook/test` types are available
+
+**Stories not appearing:**
+- Verify story file matches pattern: `*.stories.@(js|jsx|ts|tsx)`
+- Check story is in `apps/docs/stories/` directory
+- Restart Storybook dev server
+
+**Vite build errors:**
+- Clear Storybook cache: `rm -rf apps/docs/.storybook/cache`
+- Check for conflicting dependencies
+
+### Further Reading
+
+- [Storybook Documentation](https://storybook.js.org/docs)
+- [Component Story Format (CSF)](https://storybook.js.org/docs/api/csf)
+- [Storybook with Vite](https://storybook.js.org/docs/builders/vite)
+- [Chromatic Documentation](https://www.chromatic.com/docs)

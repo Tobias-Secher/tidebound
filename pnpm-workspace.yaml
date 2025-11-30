@@ -47,3 +47,4 @@ catalog:
   "@storybook/blocks": "^8.4.7"
   "@storybook/test": "^8.4.7"
   storybook: "^8.4.7"
+  "chromatic": "^13.3.4"

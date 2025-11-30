@@ -204,6 +204,9 @@ importers:
       '@types/react-dom':
         specifier: 'catalog:'
         version: 19.2.2(@types/react@19.2.2)
+      chromatic:
+        specifier: ^13.3.4
+        version: 13.3.4
       eslint:
         specifier: 'catalog:'
         version: 9.39.1
@@ -2231,6 +2234,18 @@ packages:
   check-error@2.1.1:
     resolution: {integrity: sha512-OAlb+T7V4Op9OwdkjmguYRqncdlx5JiofwOAUkmTF+jNdHwzTaTs4sRAGpzLF3oOz5xAyDGrPgeIDFQmDOTiJw==}
     engines: {node: '>= 16'}
+
+  chromatic@13.3.4:
+    resolution: {integrity: sha512-TR5rvyH0ESXobBB3bV8jc87AEAFQC7/n+Eb4XWhJz6hW3YNxIQPVjcbgLv+a4oKHEl1dUBueWSoIQsOVGTd+RQ==}
+    hasBin: true
+    peerDependencies:
+      '@chromatic-com/cypress': ^0.*.* || ^1.0.0
+      '@chromatic-com/playwright': ^0.*.* || ^1.0.0
+    peerDependenciesMeta:
+      '@chromatic-com/cypress':
+        optional: true
+      '@chromatic-com/playwright':
+        optional: true
 
   ci-info@3.9.0:
     resolution: {integrity: sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==}
@@ -5990,6 +6005,8 @@ snapshots:
   char-regex@1.0.2: {}
 
   check-error@2.1.1: {}
+
+  chromatic@13.3.4: {}
 
   ci-info@3.9.0: {}
 

@@ -27,6 +27,7 @@ catalog:
   # Tooling
   "@swc/core": ^1.15.3
   identity-obj-proxy: ^3.0.0
+  "ky": "^1.14.0"
 
   # Jest and Testing
   "@swc/jest": ^0.2.39

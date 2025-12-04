@@ -1,1 +1,0 @@
-export const isMswEnabled = process.env.NEXT_PUBLIC_USE_MSW === 'true';

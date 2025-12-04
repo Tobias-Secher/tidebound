@@ -16,6 +16,7 @@
   "devDependencies": {
     "@swc/core": "catalog:",
     "@swc/jest": "catalog:",
+    "esbuild": "catalog:",
     "identity-obj-proxy": "catalog:",
     "jest": "catalog:",
     "prettier": "catalog:",

@@ -1,12 +1,155 @@
 # Tidebound
 
-A Next.js test application with integrated API mocking capabilities.
+A modern, full-stack monorepo starter template demonstrating best practices for building scalable React applications with comprehensive testing, API mocking, and component documentation.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Monorepo Structure](#monorepo-structure)
+- [Getting Started](#getting-started)
+- [API Mocking](#api-mocking)
+- [Testing with Jest](#testing-with-jest)
+- [Storybook](#storybook)
+- [Project Features](#project-features)
+- [Scripts Reference](#scripts-reference)
+
+## Overview
+
+Tidebound is a production-ready monorepo architecture built with Turborepo, showcasing:
+- **Next.js 16** web application with App Router and React 19
+- **API mocking** with Mock Service Worker (MSW) for both client and server
+- **Comprehensive testing** with Jest and React Testing Library
+- **Component development** with Storybook and visual regression testing
+- **Data fetching** with TanStack Query (React Query) and Ky HTTP client
+- **State management** with Zustand
+- **Type-safe workspace organization** with TypeScript monorepo patterns
 
 ## Tech Stack
 
-- Next.js (App Router)
-- MSW (Mock Service Worker) for API mocking
-- Monorepo workspace structure
+### Core Technologies
+- **Next.js 16** (App Router) - React framework for web applications
+- **React 19** - UI library
+- **TypeScript** - Type safety across the monorepo
+- **Turborepo** - High-performance build system
+- **pnpm** - Fast, disk-space efficient package manager
+
+### Data Management
+- **TanStack Query (React Query)** - Powerful data synchronization for React
+- **Ky** - Modern HTTP client for REST APIs
+- **Zustand** - Lightweight state management
+
+### Development & Testing
+- **Jest** - Unit and integration testing
+- **React Testing Library** - Component testing utilities
+- **MSW (Mock Service Worker)** - API mocking for development and testing
+- **Storybook** - Component development and documentation
+- **Chromatic** - Visual regression testing
+
+### Code Quality
+- **ESLint** - Code linting with shared configurations
+- **Prettier** - Code formatting
+- **TypeScript** - Static type checking
+
+## Monorepo Structure
+
+This project uses a monorepo architecture with pnpm workspaces and Turborepo for efficient task orchestration.
+
+### Applications (`apps/`)
+
+- **`web`** - Next.js 16 application with App Router
+  - Demonstrates server and client components
+  - Integrates MSW for API mocking
+  - Uses TanStack Query for data fetching
+  - Includes comprehensive Jest test setup
+
+- **`docs`** - Storybook application for component documentation
+  - Showcases components from `@repo/ui` and `@repo/templates`
+  - Configured with Chromatic for visual regression testing
+  - Built with Vite for fast development
+
+### Packages (`packages/`)
+
+- **`@repo/ui`** - Shared React components library
+  - Reusable UI components (Button, Card, Code)
+  - Fully tested with Jest and React Testing Library
+  - Documented in Storybook
+
+- **`@repo/templates`** - Template components with state management
+  - Components using Zustand for state
+  - Examples of complex component patterns
+
+- **`@repo/services`** - Data fetching and API services
+  - TanStack Query hooks for data synchronization
+  - Ky-based HTTP client utilities
+  - Type-safe API service layer
+  - Tested with Jest in Node environment
+
+- **`@repo/mocks`** - MSW mock definitions
+  - Shared mock handlers for development and testing
+  - Browser and server exports
+  - Organized mock data structure
+
+- **`@repo/utils`** - Shared utility functions
+  - Common helpers and utilities
+  - Pure functions tested with Jest
+
+- **`@repo/typescript-config`** - Shared TypeScript configurations
+  - Base, React, and Next.js-specific configs
+  - Ensures consistent TypeScript settings across workspaces
+
+- **`@repo/eslint-config`** - Shared ESLint configurations
+  - Linting rules for library and Next.js projects
+  - Consistent code style enforcement
+
+- **`@repo/jest-config`** - Shared Jest configurations
+  - Base configuration for React packages
+  - Shared test setup and module mappings
+  - Enables cross-workspace testing
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 18
+- pnpm >= 9.5.0
+
+### Installation
+
+```bash
+# Install dependencies
+pnpm install
+```
+
+### Development
+
+```bash
+# Run the web app
+pnpm dev
+
+# Run storybook
+pnpm storybook
+```
+
+### Building
+
+```bash
+# Build all workspaces
+pnpm build
+```
+
+### Linting & Type Checking
+
+```bash
+# Lint all workspaces
+pnpm lint
+
+# Type check all workspaces
+pnpm check-types
+
+# Format code
+pnpm format
+```
 
 ## API Mocking
 
@@ -49,12 +192,20 @@ packages/jest-config/          # Shared Jest configuration package
 ├── jest.setup.ts              # Global test setup (jest-dom)
 └── shared.js                  # Shared constants (workspace mappings, mocks)
 
-packages/ui/                   # Example package with tests
-├── jest.config.js             # Extends base config
+packages/ui/                   # React components package
+├── jest.config.js             # Extends base config (jsdom)
 ├── __mocks__/                 # Mock files for CSS/assets
 └── src/
     ├── button.tsx
     └── button.test.tsx        # Co-located test file
+
+packages/services/             # API services package
+├── jest.config.js             # Extends base config (node)
+├── __mocks__/
+│   └── ky.ts                  # Mock for ESM-only ky module
+└── src/
+    ├── queries/
+    └── __tests__/             # Test directory
 
 apps/web/                      # Next.js app with tests
 ├── jest.config.cjs            # Next.js-specific config
@@ -71,13 +222,13 @@ apps/web/                      # Next.js app with tests
 - Update once, applies everywhere
 
 **2. Workspace-Specific Overrides**
-- Packages use `jest.base.config.js` (jsdom environment)
+- React packages (`ui`, `templates`) use `jest.base.config.js` (jsdom environment)
 - Next.js apps use custom config with `next/jest` (App Router support)
-- Utils use Node environment (faster for non-React code)
+- Utility packages (`utils`, `services`) use Node environment (faster for non-React code)
 
 **3. Cross-Workspace Testing**
 - Tests can import components from other workspaces
-- Shared module mappings resolve `@repo/*` imports
+- Shared module mappings resolve `@repo/*` imports (`@repo/ui`, `@repo/templates`, `@repo/utils`, `@repo/mocks`, `@repo/services`)
 - Enables integration testing across packages
 
 **4. Performance Optimized**
@@ -96,6 +247,7 @@ pnpm test
 ```bash
 pnpm --filter @repo/ui test
 pnpm --filter @repo/templates test
+pnpm --filter @repo/services test
 pnpm --filter web test
 ```
 
@@ -266,6 +418,25 @@ module.exports = createJestConfig({
 
 **Environment:** `jsdom` + Next.js transformations
 **Use for:** Next.js pages, components, API routes
+
+#### Services Package (services)
+
+**jest.config.js:**
+```javascript
+const baseConfig = require('@repo/jest-config/base');
+
+module.exports = {
+  ...baseConfig,
+  displayName: '@repo/services',
+  rootDir: __dirname,
+  testEnvironment: 'node', // Services don't need DOM
+};
+```
+
+**Environment:** `node` (no DOM overhead)
+**Use for:** API clients, utility functions, non-React business logic
+
+**Note:** The `ky` HTTP client is mocked in `__mocks__/ky.ts` because it's an ESM-only module that Jest cannot transform by default.
 
 ### What Gets Tested vs. Not Tested
 
@@ -656,3 +827,149 @@ export const ClickTest: Story = {
 - [Component Story Format (CSF)](https://storybook.js.org/docs/api/csf)
 - [Storybook with Vite](https://storybook.js.org/docs/builders/vite)
 - [Chromatic Documentation](https://www.chromatic.com/docs)
+
+## Project Features
+
+### 1. Modern React Patterns
+- **React 19** with latest features and patterns
+- **Server Components** for improved performance
+- **Client Components** with hooks and interactivity
+- **Parallel data fetching** with TanStack Query
+
+### 2. Type-Safe Development
+- Full **TypeScript** coverage across all workspaces
+- Shared TypeScript configurations for consistency
+- Type-safe API clients with Ky
+- Autocomplete and IntelliSense throughout
+
+### 3. Developer Experience
+- **Fast refresh** in development
+- **Hot module replacement** with Vite (Storybook)
+- **Parallel builds** with Turborepo
+- **Smart caching** for faster rebuilds
+- **ESLint** with auto-fix on save
+- **Prettier** for consistent formatting
+
+### 4. Testing Strategy
+- **Unit tests** for components and utilities
+- **Integration tests** across workspaces
+- **MSW** for API mocking without backend
+- **React Testing Library** for user-centric tests
+- **Visual regression** with Chromatic
+
+### 5. Monorepo Benefits
+- **Code sharing** between applications
+- **Consistent tooling** across workspaces
+- **Atomic changes** across multiple packages
+- **Dependency management** with pnpm catalogs
+- **Independent versioning** per package
+
+### 6. Production Ready
+- **Optimized builds** with Next.js
+- **Tree shaking** for minimal bundle sizes
+- **Static generation** where applicable
+- **Environment configuration** support
+- **CI/CD ready** structure
+
+## Scripts Reference
+
+### Root Scripts (run from project root)
+
+```bash
+# Development
+pnpm dev                    # Start all apps in dev mode
+pnpm storybook              # Start Storybook on port 6006
+
+# Building
+pnpm build                  # Build all workspaces
+pnpm build-storybook        # Build static Storybook
+
+# Testing
+pnpm test                   # Run all tests (50% max workers)
+pnpm test:watch             # Run tests in watch mode (25% max workers)
+pnpm test:coverage          # Run tests with coverage report
+
+# Code Quality
+pnpm lint                   # Lint all workspaces
+pnpm format                 # Format code with Prettier
+pnpm check-types            # Type check all workspaces
+```
+
+### Workspace-Specific Scripts
+
+```bash
+# Run scripts in specific workspaces
+pnpm --filter web dev           # Run web app
+pnpm --filter docs storybook    # Run Storybook
+pnpm --filter @repo/ui test     # Test UI package
+pnpm --filter web build         # Build web app
+```
+
+### Turborepo Features
+
+- **Caching**: Task outputs are cached and reused
+- **Parallelization**: Independent tasks run in parallel
+- **Incremental builds**: Only rebuild what changed
+- **Remote caching**: Share cache across team (configure in `turbo.json`)
+
+## Environment Variables
+
+>Pull env from vercel
+
+## Architecture Decisions
+
+### Why Turborepo?
+- High-performance builds with intelligent caching
+- Simple task orchestration across workspaces
+- Great developer experience with minimal configuration
+
+### Why pnpm?
+- Fast and efficient with disk space optimization
+- Native monorepo support with workspaces
+- Strict dependency isolation prevents phantom dependencies
+
+### Why MSW?
+- Mock API at the network level (works everywhere)
+- Same mocks for development, testing, and Storybook
+- No backend required for frontend development
+
+### Why TanStack Query?
+- Powerful caching and synchronization
+- Optimistic updates and background refetching
+- Excellent TypeScript support
+
+### Why Zustand?
+- Minimal boilerplate compared to Redux
+- Easy to test and reason about
+- Great TypeScript inference
+
+### Adding a New Workspace
+
+1. Create directory in `apps/` or `packages/`
+2. Add `package.json` with workspace dependencies
+3. Reference shared configs (`@repo/typescript-config`, `@repo/eslint-config`)
+4. Update `pnpm-workspace.yaml` if needed (usually auto-detected)
+
+### Adding a New Component
+
+Use Turbo generators:
+
+```bash
+cd packages/ui
+pnpm generate:component
+```
+
+## License
+
+MIT
+
+## Resources
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Turborepo Documentation](https://turbo.build/repo/docs)
+- [pnpm Workspaces](https://pnpm.io/workspaces)
+- [TanStack Query](https://tanstack.com/query/latest)
+- [MSW Documentation](https://mswjs.io/docs)
+- [Jest Documentation](https://jestjs.io/)
+- [Storybook Documentation](https://storybook.js.org/docs)
+- [Zustand Documentation](https://docs.pmnd.rs/zustand)

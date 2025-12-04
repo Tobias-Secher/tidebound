@@ -20,6 +20,15 @@
         "jest.config.{js,cjs}",
         "**/__tests__/**",
         "**/*.{test,spec}.{ts,tsx,js,jsx}"
+      ]
+    },
+    "test:coverage": {
+      "inputs": [
+        "src/**/*.{ts,tsx,js,jsx}",
+        "app/**/*.{ts,tsx,js,jsx}",
+        "jest.config.{js,cjs}",
+        "**/__tests__/**",
+        "**/*.{test,spec}.{ts,tsx,js,jsx}"
       ],
       "outputs": ["coverage/**"]
     },
@@ -38,6 +47,7 @@
   },
   "globalEnv": [
     "NODE_ENV",
-    "NEXT_PUBLIC_USE_MSW"
+    "NEXT_PUBLIC_USE_MSW",
+    "API_URL"
   ]
 }

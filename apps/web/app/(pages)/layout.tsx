@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { MswProvider } from "../providers/MswProvider";
-// import { MswProvider } from '@repo/mocks/MswProvider'
+import { ReactQueryProvider } from "../providers/ReactQueryProvider";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -27,7 +27,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <MswProvider>
-          {children}
+          <ReactQueryProvider>
+            {children}
+          </ReactQueryProvider>
         </MswProvider>
       </body>
     </html>

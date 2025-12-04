@@ -38,6 +38,7 @@
   },
   "globalEnv": [
     "NODE_ENV",
-    "NEXT_PUBLIC_USE_MSW"
+    "NEXT_PUBLIC_USE_MSW",
+    "API_URL"
   ]
 }

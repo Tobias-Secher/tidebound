@@ -83,6 +83,7 @@ This project uses a monorepo architecture with pnpm workspaces and Turborepo for
   - TanStack Query hooks for data synchronization
   - Ky-based HTTP client utilities
   - Type-safe API service layer
+  - Tested with Jest in Node environment
 
 - **`@repo/mocks`** - MSW mock definitions
   - Shared mock handlers for development and testing
@@ -191,12 +192,20 @@ packages/jest-config/          # Shared Jest configuration package
 ├── jest.setup.ts              # Global test setup (jest-dom)
 └── shared.js                  # Shared constants (workspace mappings, mocks)
 
-packages/ui/                   # Example package with tests
-├── jest.config.js             # Extends base config
+packages/ui/                   # React components package
+├── jest.config.js             # Extends base config (jsdom)
 ├── __mocks__/                 # Mock files for CSS/assets
 └── src/
     ├── button.tsx
     └── button.test.tsx        # Co-located test file
+
+packages/services/             # API services package
+├── jest.config.js             # Extends base config (node)
+├── __mocks__/
+│   └── ky.ts                  # Mock for ESM-only ky module
+└── src/
+    ├── queries/
+    └── __tests__/             # Test directory
 
 apps/web/                      # Next.js app with tests
 ├── jest.config.cjs            # Next.js-specific config
@@ -213,13 +222,13 @@ apps/web/                      # Next.js app with tests
 - Update once, applies everywhere
 
 **2. Workspace-Specific Overrides**
-- Packages use `jest.base.config.js` (jsdom environment)
+- React packages (`ui`, `templates`) use `jest.base.config.js` (jsdom environment)
 - Next.js apps use custom config with `next/jest` (App Router support)
-- Utils use Node environment (faster for non-React code)
+- Utility packages (`utils`, `services`) use Node environment (faster for non-React code)
 
 **3. Cross-Workspace Testing**
 - Tests can import components from other workspaces
-- Shared module mappings resolve `@repo/*` imports
+- Shared module mappings resolve `@repo/*` imports (`@repo/ui`, `@repo/templates`, `@repo/utils`, `@repo/mocks`, `@repo/services`)
 - Enables integration testing across packages
 
 **4. Performance Optimized**
@@ -238,6 +247,7 @@ pnpm test
 ```bash
 pnpm --filter @repo/ui test
 pnpm --filter @repo/templates test
+pnpm --filter @repo/services test
 pnpm --filter web test
 ```
 
@@ -408,6 +418,25 @@ module.exports = createJestConfig({
 
 **Environment:** `jsdom` + Next.js transformations
 **Use for:** Next.js pages, components, API routes
+
+#### Services Package (services)
+
+**jest.config.js:**
+```javascript
+const baseConfig = require('@repo/jest-config/base');
+
+module.exports = {
+  ...baseConfig,
+  displayName: '@repo/services',
+  rootDir: __dirname,
+  testEnvironment: 'node', // Services don't need DOM
+};
+```
+
+**Environment:** `node` (no DOM overhead)
+**Use for:** API clients, utility functions, non-React business logic
+
+**Note:** The `ky` HTTP client is mocked in `__mocks__/ky.ts` because it's an ESM-only module that Jest cannot transform by default.
 
 ### What Gets Tested vs. Not Tested
 

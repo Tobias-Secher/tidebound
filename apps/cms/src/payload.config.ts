@@ -12,18 +12,21 @@ import { Media } from './collections/Media'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const apiTypesWorkspacePath = path.resolve(dirname, '../../../packages/api-types/src')
+
 export default buildConfig({
   admin: {
     user: Users.slug,
     importMap: {
-      baseDir: path.resolve(dirname),
+      baseDir: `${apiTypesWorkspacePath}`,
     },
   },
   collections: [Users, Media],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: `${apiTypesWorkspacePath}/payload-types.ts`,
+    declare: false,
   },
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',

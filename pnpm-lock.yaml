@@ -441,6 +441,24 @@ importers:
         specifier: 'catalog:'
         version: 5.9.2
 
+  packages/api-types:
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      eslint:
+        specifier: 'catalog:'
+        version: 9.39.1
+      payload:
+        specifier: 'catalog:'
+        version: 3.66.0(graphql@16.12.0)(typescript@5.9.2)
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.2
+
   packages/eslint-config:
     devDependencies:
       '@eslint/js':

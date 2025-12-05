@@ -11,7 +11,8 @@
     "test:watch": "turbo run test:watch",
     "test:coverage": "turbo run test:coverage",
     "storybook": "turbo run storybook",
-    "build-storybook": "turbo run build-storybook"
+    "build-storybook": "turbo run build-storybook",
+    "generate:types": "turbo run generate:types"
   },
   "devDependencies": {
     "@swc/core": "catalog:",

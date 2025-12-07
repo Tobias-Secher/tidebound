@@ -1,1 +1,2 @@
-export { useGetUser } from "./hooks";
+export { useGetUser, useGetPage } from "./hooks";
+export * from "./actions";

@@ -32,6 +32,9 @@
       ],
       "outputs": ["coverage/**"]
     },
+    "generate:types": {
+      "cache": false
+    },
     "dev": {
       "cache": false,
       "persistent": true

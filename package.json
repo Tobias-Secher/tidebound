@@ -22,6 +22,7 @@
     "jest": "catalog:",
     "prettier": "catalog:",
     "turbo": "catalog:",
+    "@turbo/gen": "catalog:",
     "typescript": "catalog:"
   },
   "packageManager": "pnpm@9.5.0",

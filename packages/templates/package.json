@@ -11,7 +11,8 @@
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests --maxWorkers=50%",
     "test:watch": "jest --watch --passWithNoTests --maxWorkers=25%",
-    "test:coverage": "jest --coverage --passWithNoTests --maxWorkers=50%"
+    "test:coverage": "jest --coverage --passWithNoTests --maxWorkers=50%",
+    "gen-component": "turbo gen react-component"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -27,7 +28,8 @@
     "eslint": "catalog:",
     "jest": "catalog:",
     "jest-environment-jsdom": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "@turbo/gen": "catalog:"
   },
   "dependencies": {
     "react": "catalog:",

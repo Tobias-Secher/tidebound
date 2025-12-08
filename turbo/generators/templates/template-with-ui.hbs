@@ -1,0 +1,18 @@
+"use client";
+
+import { ReactNode } from "react";
+import { {{ pascalCase name }} as UI{{ pascalCase name }} } from "@repo/ui/{{ kebabCase name }}";
+import styles from "./{{ kebabCase name }}.module.css";
+
+export interface {{ pascalCase name }}Props {
+  children?: ReactNode;
+  className?: string;
+}
+
+export const {{ pascalCase name }} = ({ children, className }: {{ pascalCase name }}Props) => {
+  return (
+    <UI{{ pascalCase name }} className={styles.container}>
+      {children}
+    </UI{{ pascalCase name }}>
+  );
+};

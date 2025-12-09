@@ -27,7 +27,8 @@
     "eslint": "catalog:",
     "jest": "catalog:",
     "jest-environment-jsdom": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "@turbo/gen": "catalog:"
   },
   "dependencies": {
     "react": "catalog:",

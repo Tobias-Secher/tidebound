@@ -1,0 +1,16 @@
+import { render, screen } from "@testing-library/react";
+import { {{ pascalCase name }} } from "./{{ kebabCase name }}";
+
+describe("{{ pascalCase name }}", () => {
+  it("renders children correctly", () => {
+    render(<{{ pascalCase name }}>Test Content</{{ pascalCase name }}>);
+    expect(screen.getByText("Test Content")).toBeInTheDocument();
+  });
+
+  it("applies className prop", () => {
+    const { container } = render(
+      <{{ pascalCase name }} className="test-class">Content</{{ pascalCase name }}>
+    );
+    expect(container.firstChild).toHaveClass("test-class");
+  });
+});

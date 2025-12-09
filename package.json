@@ -12,7 +12,8 @@
     "test:coverage": "turbo run test:coverage",
     "storybook": "turbo run storybook",
     "build-storybook": "turbo run build-storybook",
-    "generate:types": "turbo run generate:types"
+    "generate:types": "turbo run generate:types",
+    "generate:component": "turbo run generate:component"
   },
   "devDependencies": {
     "@swc/core": "catalog:",

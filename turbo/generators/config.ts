@@ -52,7 +52,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         });
         actions.push({
           type: "add",
-          path: "{{ turbo.paths.root }}/packages/ui/src/{{ kebabCase name }}.stories.tsx",
+          path: "{{ turbo.paths.root }}/apps/docs/stories/ui/{{ pascalCase name }}.stories.tsx",
           templateFile: "templates/component.stories.hbs",
         });
 
@@ -79,7 +79,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         });
         actions.push({
           type: "add",
-          path: "{{ turbo.paths.root }}/packages/templates/src/{{ kebabCase name }}.stories.tsx",
+          path: "{{ turbo.paths.root }}/apps/docs/stories/templates/{{ pascalCase name }}.stories.tsx",
           templateFile: "templates/template.stories.hbs",
         });
 

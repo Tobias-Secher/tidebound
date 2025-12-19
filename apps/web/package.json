@@ -17,10 +17,12 @@
     "@repo/ui": "workspace:*",
     "@repo/mocks": "workspace:*",
     "@repo/utils": "workspace:*",
+    "@repo/i18n": "workspace:*",
     "next": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "@tanstack/react-query": "catalog:"
+    "@tanstack/react-query": "catalog:",
+    "next-intl": "catalog:"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

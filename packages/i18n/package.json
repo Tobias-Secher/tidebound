@@ -1,0 +1,31 @@
+{
+  "name": "@repo/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./request": "./src/request.ts",
+    "./i18n.d.ts": "./src/i18n.d.ts",
+    "./messages/*": "./messages/*.json"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "generate:types": "tsx scripts/generateTypes.ts",
+    "generate:migrate": "tsx scripts/migrateToPayload.ts"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
+  },
+  "dependencies": {
+    "next-intl": "catalog:"
+  },
+  "peerDependencies": {
+    "next": ">=14",
+    "react": ">=18"
+  }
+}

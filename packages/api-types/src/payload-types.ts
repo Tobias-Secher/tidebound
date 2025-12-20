@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     pages: Page;
+    translations: Translation;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +81,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    translations: TranslationsSelect<false> | TranslationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -253,6 +255,55 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "translations".
+ */
+export interface Translation {
+  id: string;
+  /**
+   * Translation key using dot notation (e.g., "HomePage.title" or "common.submit")
+   */
+  key: string;
+  /**
+   * Namespace/group for organizing translations
+   */
+  namespace: 'common' | 'HomePage' | 'auth' | 'navigation' | 'footer' | 'forms' | 'errors' | 'success' | 'validation';
+  /**
+   * Context or usage notes for translators
+   */
+  description?: string | null;
+  translations: {
+    /**
+     * Translation for English (EN)
+     */
+    en: string;
+    /**
+     * Translation for German (DE)
+     */
+    de?: string | null;
+    /**
+     * Translation for French (FR)
+     */
+    fr?: string | null;
+    /**
+     * Translation for Danish (DA)
+     */
+    da?: string | null;
+  };
+  /**
+   * Tags for filtering and organizing translations (e.g., "landing-page", "checkout", "navigation")
+   */
+  tags?:
+    | {
+        tag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -286,6 +337,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: string | Page;
+      } | null)
+    | ({
+        relationTo: 'translations';
+        value: string | Translation;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -420,6 +475,32 @@ export interface PagesSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "translations_select".
+ */
+export interface TranslationsSelect<T extends boolean = true> {
+  key?: T;
+  namespace?: T;
+  description?: T;
+  translations?:
+    | T
+    | {
+        en?: T;
+        de?: T;
+        fr?: T;
+        da?: T;
+      };
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

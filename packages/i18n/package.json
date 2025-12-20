@@ -9,10 +9,7 @@
     "./messages/*": "./messages/*.json"
   },
   "scripts": {
-    "dev": "echo 'Add dev script here'",
-    "build": "echo 'Add build script here'",
-    "test": "echo 'Add test script here'",
-    "lint": "echo 'Add lint script here'",
+    "lint": "eslint . --max-warnings 0",
     "generate:types": "tsx scripts/generateTypes.ts",
     "generate:migrate": "tsx scripts/migrateToPayload.ts"
   },

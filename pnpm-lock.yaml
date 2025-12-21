@@ -515,9 +515,6 @@ importers:
 
   packages/i18n:
     dependencies:
-      next:
-        specifier: '>=14'
-        version: 16.0.7(@babel/core@7.28.5)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4)
       next-intl:
         specifier: 'catalog:'
         version: 4.6.1(next@16.0.7(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(react@19.2.1)(typescript@5.9.2)
@@ -537,6 +534,9 @@ importers:
       eslint:
         specifier: 'catalog:'
         version: 9.39.1
+      next:
+        specifier: 'catalog:'
+        version: 16.0.7(@babel/core@7.28.5)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4)
       tsx:
         specifier: 'catalog:'
         version: 4.20.6

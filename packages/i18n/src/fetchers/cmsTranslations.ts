@@ -1,9 +1,10 @@
 import type { Locale } from '../index'
 import { flatToNested, type TranslationDocument } from '../utils/transformTranslations'
-import { CMS_URL, getCacheRevalidate } from '../config'
+import { CMS_URL, TRANSLATION_CACHE_TAGS } from '../config'
 
 /**
- * Fetches translations from Payload CMS with caching
+ * Fetches translations from Payload CMS with infinite caching
+ * Cache is invalidated using tags when translations are updated
  *
  * @param locale - The locale to fetch translations for
  * @returns Nested translation object or null if fetch fails
@@ -16,8 +17,8 @@ export async function fetchCMSTranslations(
       `${CMS_URL}/api/translations?locale=${locale}&limit=10000&depth=0&where[_status][equals]=published`,
       {
         next: {
-          revalidate: getCacheRevalidate(),
-          tags: [`translations-${locale}`, 'translations'],
+          revalidate: false, // Cache infinitely, revalidate via tags
+          tags: [TRANSLATION_CACHE_TAGS.locale(locale), TRANSLATION_CACHE_TAGS.all],
         },
       }
     )

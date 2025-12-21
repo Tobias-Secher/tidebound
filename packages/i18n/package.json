@@ -19,6 +19,7 @@
     "@repo/typescript-config": "workspace:*",
     "@types/node": "catalog:",
     "eslint": "catalog:",
+    "next": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:"
   },

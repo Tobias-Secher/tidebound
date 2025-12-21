@@ -11,8 +11,7 @@
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "generate:types": "tsx scripts/generateTypes.ts",
-    "generate:migrate": "tsx scripts/migrateToPayload.ts"
+    "generate:translations": "tsx scripts/generateTypes.ts"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

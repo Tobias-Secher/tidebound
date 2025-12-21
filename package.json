@@ -13,6 +13,7 @@
     "storybook": "turbo run storybook",
     "build-storybook": "turbo run build-storybook",
     "generate:types": "turbo run generate:types",
+    "generate:translations": "turbo run generate:translations",
     "generate:component": "turbo run generate:component"
   },
   "devDependencies": {

@@ -35,6 +35,9 @@
     "generate:types": {
       "cache": false
     },
+    "generate:translations": {
+      "cache": false
+    },
     "generate:component": {
       "cache": false,
       "interactive": true

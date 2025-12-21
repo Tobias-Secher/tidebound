@@ -2,11 +2,11 @@ import fs from 'fs/promises'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { locales } from '../src/index.js'
+import { CMS_URL } from '../src/config.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const CMS_API_URL = process.env.CMS_URL || process.env.NEXT_PUBLIC_CMS_URL || 'http://localhost:3001'
 const CMS_API_KEY = process.env.CMS_API_KEY
 
 /**
@@ -53,7 +53,7 @@ function getNestedValue(obj: any, keys: string[]): string | undefined {
  */
 async function migrateTranslations() {
   console.log('🔄 Starting migration of translations to Payload CMS...')
-  console.log(`   API URL: ${CMS_API_URL}`)
+  console.log(`   API URL: ${CMS_URL}`)
 
   if (!CMS_API_KEY) {
     console.error('\n❌ Error: CMS_API_KEY environment variable is required')
@@ -137,7 +137,7 @@ async function migrateTranslations() {
 
     for (const doc of docs) {
       try {
-        const response = await fetch(`${CMS_API_URL}/api/translations`, {
+        const response = await fetch(`${CMS_URL}/api/translations`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

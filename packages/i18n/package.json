@@ -5,6 +5,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./request": "./src/request.ts",
+    "./config": "./src/config.ts",
     "./i18n.d.ts": "./src/i18n.d.ts",
     "./messages/*": "./messages/*.json"
   },

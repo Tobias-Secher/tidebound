@@ -23,7 +23,7 @@ const ThemeImage = (props: Props) => {
 
 export default async function Home({ params }: Readonly<Props>) {
   const user = await fetch("https://api.github.com/users/tobias-secher").then(
-    (res) => res.json()
+    (res) => res.json(),
   );
 
   const mswStatus = isMswEnabled ? "MSW is enabled" : "MSW is disabled";
@@ -37,7 +37,7 @@ export default async function Home({ params }: Readonly<Props>) {
     <div className={styles.page}>
       <pre>{user["name"]}</pre>
       <pre>{t("title")}</pre>
-      <pre>{t("description")}</pre>
+      <pre>{t("subtitle")}</pre>
       <pre>{mswStatus}</pre>
       <ClientComponent />
     </div>

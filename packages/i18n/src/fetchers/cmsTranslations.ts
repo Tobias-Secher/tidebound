@@ -17,7 +17,7 @@ export async function fetchCMSTranslations(
       `${CMS_URL}/api/translations?locale=${locale}&limit=10000&depth=0&where[_status][equals]=published`,
       {
         next: {
-          revalidate: false, // Cache infinitely, revalidate via tags
+          revalidate: false,
           tags: [
             TRANSLATION_CACHE_TAGS.locale(locale),
             TRANSLATION_CACHE_TAGS.all,

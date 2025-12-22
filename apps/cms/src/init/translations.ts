@@ -32,7 +32,7 @@ export const initTranslations = async (payload: BasePayload) => {
     limit: 1,
   })
 
-  if (existingTranslations.docs.length > 1) {
+  if (existingTranslations.docs.length > 0) {
     return
   }
 

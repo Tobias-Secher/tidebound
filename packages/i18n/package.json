@@ -5,24 +5,27 @@
   "exports": {
     ".": "./src/index.ts",
     "./request": "./src/request.ts",
+    "./config": "./src/config.ts",
     "./i18n.d.ts": "./src/i18n.d.ts",
     "./messages/*": "./messages/*.json"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "generate:types": "tsx scripts/generateTypes.ts",
-    "generate:migrate": "tsx scripts/migrateToPayload.ts"
+    "generate:translations": "tsx --env-file=../../.env.local scripts/generateTypes.ts"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "catalog:",
+    "dotenv": "^17.2.3",
     "eslint": "catalog:",
+    "next": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:"
   },
   "dependencies": {
-    "next-intl": "catalog:"
+    "next-intl": "catalog:",
+    "@repo/api-types": "workspace:*"
   },
   "peerDependencies": {
     "next": ">=14",

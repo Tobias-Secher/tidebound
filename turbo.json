@@ -35,6 +35,9 @@
     "generate:types": {
       "cache": false
     },
+    "generate:translations": {
+      "cache": false
+    },
     "generate:component": {
       "cache": false,
       "interactive": true
@@ -52,5 +55,11 @@
       "outputs": ["storybook-static/**"]
     }
   },
-  "globalEnv": ["NODE_ENV", "NEXT_PUBLIC_USE_MSW", "API_URL"]
+  "globalEnv": [
+    "NODE_ENV",
+    "NEXT_PUBLIC_USE_MSW",
+    "API_URL",
+    "PAYLOAD_SECRET",
+    "DATABASE_URI"
+  ]
 }

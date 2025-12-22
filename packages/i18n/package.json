@@ -2,7 +2,6 @@
   "name": "@repo/i18n",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "exports": {
     ".": "./src/index.ts",
     "./request": "./src/request.ts",
@@ -12,12 +11,13 @@
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
-    "generate:translations": "tsx scripts/generateTypes.ts"
+    "generate:translations": "tsx --env-file=../../.env.local scripts/generateTypes.ts"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "catalog:",
+    "dotenv": "^17.2.3",
     "eslint": "catalog:",
     "next": "catalog:",
     "tsx": "catalog:",

@@ -1,13 +1,5 @@
-import type { Locale, locales } from "../index";
-
-export type TranslationDocument = {
-  key: string;
-  namespace: string;
-  translations: {
-    en?: string;
-    da?: string;
-  };
-};
+import type { Locale } from "../index";
+import type { Translation } from "@repo/api-types";
 
 export type NestedMessages = Record<string, any>;
 
@@ -23,7 +15,7 @@ export type NestedMessages = Record<string, any>;
  * @returns Nested object structure compatible with next-intl
  */
 export function flatToNested(
-  translations: TranslationDocument[],
+  translations: Translation[],
   locale: Locale,
 ): NestedMessages {
   const result: NestedMessages = {};

@@ -1,6 +1,6 @@
-import type { Locale } from '../index'
-import { flatToNested, type TranslationDocument } from '../utils/transformTranslations'
-import { CMS_URL, TRANSLATION_CACHE_TAGS } from '../config'
+import type { Locale } from "../index";
+import { flatToNested } from "../utils/transformTranslations";
+import { CMS_URL, TRANSLATION_CACHE_TAGS } from "../config";
 
 /**
  * Fetches translations from Payload CMS with infinite caching
@@ -10,7 +10,7 @@ import { CMS_URL, TRANSLATION_CACHE_TAGS } from '../config'
  * @returns Nested translation object or null if fetch fails
  */
 export async function fetchCMSTranslations(
-  locale: Locale
+  locale: Locale,
 ): Promise<Record<string, any> | null> {
   try {
     const response = await fetch(
@@ -18,26 +18,31 @@ export async function fetchCMSTranslations(
       {
         next: {
           revalidate: false, // Cache infinitely, revalidate via tags
-          tags: [TRANSLATION_CACHE_TAGS.locale(locale), TRANSLATION_CACHE_TAGS.all],
+          tags: [
+            TRANSLATION_CACHE_TAGS.locale(locale),
+            TRANSLATION_CACHE_TAGS.all,
+          ],
         },
-      }
-    )
+      },
+    );
 
     if (!response.ok) {
-      console.error(`[i18n] CMS fetch failed for ${locale}: ${response.statusText}`)
-      return null
+      console.error(
+        `[i18n] CMS fetch failed for ${locale}: ${response.statusText}`,
+      );
+      return null;
     }
 
-    const { docs } = await response.json()
+    const { docs } = await response.json();
 
     if (!Array.isArray(docs)) {
-      console.error(`[i18n] Invalid CMS response for ${locale}`)
-      return null
+      console.error(`[i18n] Invalid CMS response for ${locale}`);
+      return null;
     }
 
-    return flatToNested(docs as TranslationDocument[], locale)
+    return flatToNested(docs, locale);
   } catch (error) {
-    console.error(`[i18n] CMS fetch error for ${locale}:`, error)
-    return null
+    console.error(`[i18n] CMS fetch error for ${locale}:`, error);
+    return null;
   }
 }

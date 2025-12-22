@@ -24,7 +24,8 @@
     "typescript": "catalog:"
   },
   "dependencies": {
-    "next-intl": "catalog:"
+    "next-intl": "catalog:",
+    "@repo/api-types": "workspace:*"
   },
   "peerDependencies": {
     "next": ">=14",

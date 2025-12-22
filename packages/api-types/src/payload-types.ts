@@ -273,19 +273,19 @@ export interface Translation {
   description?: string | null;
   translations: {
     /**
-     * Translation for English (EN)
+     * Translation for EN
      */
     en: string;
     /**
-     * Translation for German (DE)
+     * Translation for DE
      */
     de?: string | null;
     /**
-     * Translation for French (FR)
+     * Translation for FR
      */
     fr?: string | null;
     /**
-     * Translation for Danish (DA)
+     * Translation for DA
      */
     da?: string | null;
   };

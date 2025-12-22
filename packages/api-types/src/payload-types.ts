@@ -277,14 +277,6 @@ export interface Translation {
      */
     en: string;
     /**
-     * Translation for DE
-     */
-    de?: string | null;
-    /**
-     * Translation for FR
-     */
-    fr?: string | null;
-    /**
      * Translation for DA
      */
     da?: string | null;
@@ -488,8 +480,6 @@ export interface TranslationsSelect<T extends boolean = true> {
     | T
     | {
         en?: T;
-        de?: T;
-        fr?: T;
         da?: T;
       };
   tags?:

@@ -1,6 +1,8 @@
 import type { CollectionConfig } from "payload";
+import { revalidateTag } from "next/cache";
 import { locales } from "@repo/i18n";
 import { collectionNames } from "@/collectionNames";
+import { TRANSLATION_CACHE_TAGS } from "@repo/i18n/config";
 
 export const Translations: CollectionConfig = {
   slug: collectionNames.translations,
@@ -14,6 +16,26 @@ export const Translations: CollectionConfig = {
   },
   versions: {
     drafts: true, // Enable draft translations for publishing workflow
+  },
+  hooks: {
+    afterChange: [
+      async ({ doc, req }) => {
+        if (doc._status === "published") {
+          try {
+            revalidateTag(TRANSLATION_CACHE_TAGS.all, "max");
+            req.payload.logger.info(
+              `Translation cache revalidated for key: ${doc.key}`,
+            );
+          } catch (error) {
+            req.payload.logger.error(
+              `Failed to revalidate translations cache: ${error}`,
+            );
+          }
+        }
+
+        return doc;
+      },
+    ],
   },
   fields: [
     {

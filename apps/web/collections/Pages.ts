@@ -1,4 +1,5 @@
-import type { CollectionConfig } from 'payload'
+import { revalidateTag } from 'next/cache';
+import type { CollectionConfig } from 'payload';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -8,6 +9,19 @@ export const Pages: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [
+      async ({ req }) => {
+        req.payload.logger.info(`Page updated, revalidating cache.`);
+        try {
+          revalidateTag('*', 'max');
+        } catch (error) {
+          req.payload.logger.error(`Failed to revalidate page cache: ${error}`);
+        }
+        return;
+      },
+    ],
   },
   fields: [
     {
@@ -105,4 +119,4 @@ export const Pages: CollectionConfig = {
       ],
     },
   ],
-}
+};

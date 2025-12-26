@@ -50,16 +50,14 @@
       "cache": false,
       "persistent": true
     },
+    "env-pull": {
+      "cache": false,
+      "interactive": true
+    },
     "build-storybook": {
       "dependsOn": ["^build"],
       "outputs": ["storybook-static/**"]
     }
   },
-  "globalEnv": [
-    "NODE_ENV",
-    "NEXT_PUBLIC_USE_MSW",
-    "API_URL",
-    "PAYLOAD_SECRET",
-    "DATABASE_URI"
-  ]
+  "globalEnv": ["NODE_ENV", "NEXT_PUBLIC_USE_MSW", "API_URL", "PAYLOAD_SECRET", "DATABASE_URI"]
 }

@@ -11,7 +11,8 @@
     "check-types": "next typegen && tsc --noEmit",
     "test": "jest --passWithNoTests --maxWorkers=50%",
     "test:watch": "jest --watch --passWithNoTests --maxWorkers=25%",
-    "test:coverage": "jest --coverage --passWithNoTests --maxWorkers=50%"
+    "test:coverage": "jest --coverage --passWithNoTests --maxWorkers=50%",
+    "env-pull": "vercel pull --environment=development"
   },
   "dependencies": {
     "@repo/ui": "workspace:*",

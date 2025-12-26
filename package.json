@@ -14,7 +14,8 @@
     "build-storybook": "turbo run build-storybook",
     "generate:types": "turbo run generate:types",
     "generate:translations": "turbo run generate:translations",
-    "generate:component": "turbo run generate:component"
+    "generate:component": "turbo run generate:component",
+    "env-pull": "turbo run env-pull"
   },
   "devDependencies": {
     "@swc/core": "catalog:",

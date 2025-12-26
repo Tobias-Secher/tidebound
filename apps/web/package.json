@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3000",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint --max-warnings 0",
     "check-types": "next typegen && tsc --noEmit",
@@ -15,21 +15,27 @@
     "env-pull": "vercel pull --environment=development"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
-    "@repo/mocks": "workspace:*",
-    "@repo/utils": "workspace:*",
+    "@payloadcms/db-mongodb": "^3.69.0",
+    "@payloadcms/next": "^3.69.0",
+    "@payloadcms/richtext-lexical": "^3.69.0",
     "@repo/i18n": "workspace:*",
-    "next": "catalog:",
+    "@repo/mocks": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "graphql": "^16.8.1",
+    "next": "16.0.7",
+    "next-intl": "catalog:",
+    "payload": "^3.69.0",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "@tanstack/react-query": "catalog:",
-    "next-intl": "catalog:"
+    "sharp": "catalog:"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@repo/jest-config": "workspace:*",
     "@repo/services": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
     "@testing-library/user-event": "catalog:",

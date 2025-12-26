@@ -4,13 +4,16 @@ import styles from "./page.module.css";
 import { isMswEnabled } from "@repo/utils";
 import { getTranslations, setRequestLocale } from "@repo/i18n";
 
-type Props = Omit<ImageProps, "src"> & {
+type ThemeImageProps = Omit<ImageProps, "src"> & {
   srcLight: string;
   srcDark: string;
+};
+
+type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
-const ThemeImage = (props: Props) => {
+const ThemeImage = (props: ThemeImageProps) => {
   const { srcLight, srcDark, ...rest } = props;
 
   return (
@@ -21,7 +24,7 @@ const ThemeImage = (props: Props) => {
   );
 };
 
-export default async function Home({ params }: Readonly<Props>) {
+export default async function Home({ params }: PageProps) {
   const user = await fetch("https://api.github.com/users/tobias-secher").then(
     (res) => res.json(),
   );

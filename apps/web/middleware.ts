@@ -19,8 +19,9 @@ export default createMiddleware({
 export const config = {
   // Match all pathnames except for
   // - /api routes
+  // - /admin routes (Payload CMS)
   // - /_next (Next.js internals)
   // - /_vercel (Vercel internals)
   // - /public files (favicon.ico, etc.)
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
+  matcher: ['/((?!api|admin|_next|_vercel|.*\\..*).*)'],
 };

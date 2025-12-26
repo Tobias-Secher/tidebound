@@ -12,14 +12,17 @@
     "test": "jest --passWithNoTests --maxWorkers=50%",
     "test:watch": "jest --watch --passWithNoTests --maxWorkers=25%",
     "test:coverage": "jest --coverage --passWithNoTests --maxWorkers=50%",
-    "env-pull": "vercel env pull --environment=development"
+    "env-pull": "vercel env pull --environment=development",
+    "generate:importmap": "payload generate:importmap"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.69.0",
     "@payloadcms/next": "^3.69.0",
     "@payloadcms/richtext-lexical": "^3.69.0",
+    "@payloadcms/ui": "3.69.0",
     "@repo/i18n": "workspace:*",
     "@repo/mocks": "workspace:*",
+    "@repo/services": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
     "@tanstack/react-query": "catalog:",
@@ -29,8 +32,7 @@
     "payload": "^3.69.0",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "sharp": "catalog:",
-    "@repo/services": "workspace:*"
+    "sharp": "catalog:"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

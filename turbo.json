@@ -54,6 +54,9 @@
       "cache": false,
       "interactive": true
     },
+    "generate:importmap": {
+      "cache": false
+    },
     "build-storybook": {
       "dependsOn": ["^build"],
       "outputs": ["storybook-static/**"]

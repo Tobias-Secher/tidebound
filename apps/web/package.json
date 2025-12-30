@@ -25,6 +25,7 @@
     "@repo/services": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
+    "@repo/api-types": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "graphql": "^16.8.1",
     "next": "catalog:",

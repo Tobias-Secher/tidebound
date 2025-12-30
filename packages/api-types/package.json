@@ -5,8 +5,7 @@
   "exports": {
     ".": "./src/index.ts"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",

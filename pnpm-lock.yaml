@@ -261,6 +261,9 @@ importers:
       '@payloadcms/ui':
         specifier: 3.69.0
         version: 3.69.0(@types/react@19.2.2)(monaco-editor@0.55.1)(next@16.0.7(@babel/core@7.28.5)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.69.0(graphql@16.12.0)(typescript@5.9.2))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(typescript@5.9.2)
+      '@repo/api-types':
+        specifier: workspace:*
+        version: link:../../packages/api-types
       '@repo/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
@@ -491,6 +494,9 @@ importers:
       ky:
         specifier: 'catalog:'
         version: 1.14.0
+      next:
+        specifier: 'catalog:'
+        version: 16.0.7(@babel/core@7.28.5)(@playwright/test@1.56.1)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4)
     devDependencies:
       '@repo/api-types':
         specifier: workspace:*

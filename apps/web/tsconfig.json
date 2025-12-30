@@ -7,7 +7,7 @@
       }
     ],
     "paths": {
-      "@payload-config": ["./payload.config.ts"]
+      "@payload-config": ["./payload/config.ts"]
     },
     "declaration": false,
     "declarationMap": false

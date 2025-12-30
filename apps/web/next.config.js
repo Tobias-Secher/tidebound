@@ -16,7 +16,7 @@ const nextConfig = {
   webpack: (config, { isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@payload-config": path.resolve(__dirname, "./payload.config.ts"),
+      "@payload-config": path.resolve(__dirname, "./payload/config.ts"),
     };
 
     // Exclude MSW from webpack bundling (it's only for development/testing)

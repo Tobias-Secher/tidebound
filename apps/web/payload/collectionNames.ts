@@ -1,3 +1,3 @@
 export const collectionNames = {
-  translations: "translations",
+  translations: 'translations',
 } as const;

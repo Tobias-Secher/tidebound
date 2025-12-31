@@ -2,6 +2,7 @@
   "name": "@repo/i18n",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "exports": {
     ".": "./src/index.ts",
     "./request": "./src/request.ts",
@@ -12,7 +13,7 @@
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:translations": "tsx --env-file=../../.env.local scripts/generateTypes.ts",
-    "env-pull": "vercel pull --environment=development"
+    "env-pull": "vercel env pull --environment=development"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

@@ -15,7 +15,8 @@
     "generate:types": "turbo run generate:types",
     "generate:translations": "turbo run generate:translations",
     "generate:component": "turbo run generate:component",
-    "env-pull": "turbo run env-pull"
+    "env-pull": "turbo run env-pull",
+    "generate:importmap": "turbo run generate:importmap"
   },
   "devDependencies": {
     "@swc/core": "catalog:",

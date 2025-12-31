@@ -2,7 +2,7 @@ import { BasePayload } from 'payload'
 
 type Translation = {
   key: string
-  namespace: string
+  namespace: 'common' | 'HomePage' | 'auth' | 'navigation' | 'footer' | 'forms' | 'errors' | 'success' | 'validation'
   description: string
   translations: {
     en: string

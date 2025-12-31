@@ -13,20 +13,32 @@ const nextConfig = {
   env: {
     API_URL: process.env.API_URL,
   },
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, nextRuntime }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
       "@payload-config": path.resolve(__dirname, "./payload/config.ts"),
     };
 
     // Exclude MSW from webpack bundling (it's only for development/testing)
-    if (isServer) {
+    // Apply to both server and edge runtime
+    if (isServer || nextRuntime === 'edge') {
       config.externals = config.externals || [];
-      config.externals.push({
-        'msw/node': 'commonjs msw/node',
-        '@mswjs/interceptors': 'commonjs @mswjs/interceptors',
-        '@mswjs/interceptors/ClientRequest': 'commonjs @mswjs/interceptors/ClientRequest',
-      });
+
+      // For edge runtime, we need to completely ignore these modules
+      if (nextRuntime === 'edge') {
+        config.resolve.alias = {
+          ...config.resolve.alias,
+          'msw/node': false,
+          '@mswjs/interceptors': false,
+          '@repo/mocks/server': false,
+        };
+      } else {
+        config.externals.push({
+          'msw/node': 'commonjs msw/node',
+          '@mswjs/interceptors': 'commonjs @mswjs/interceptors',
+          '@mswjs/interceptors/ClientRequest': 'commonjs @mswjs/interceptors/ClientRequest',
+        });
+      }
     }
 
     return config;

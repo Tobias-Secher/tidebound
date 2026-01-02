@@ -8,6 +8,6 @@ export type HeaderProps = {
   className?: string;
 };
 
-export const Header = ({ children, className }: HeaderProps) => {
-  return <div className={styles.container}>{children}</div>;
-};
+export function Header({ children, className }: HeaderProps) {
+  return <div className={styles.container}>Header works</div>;
+}

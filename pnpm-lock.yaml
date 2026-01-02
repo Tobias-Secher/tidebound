@@ -273,6 +273,9 @@ importers:
       '@repo/services':
         specifier: workspace:*
         version: link:../../packages/services
+      '@repo/templates':
+        specifier: workspace:*
+        version: link:../../packages/templates
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui

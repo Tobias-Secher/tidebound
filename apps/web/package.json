@@ -24,6 +24,7 @@
     "@repo/mocks": "workspace:*",
     "@repo/services": "workspace:*",
     "@repo/ui": "workspace:*",
+    "@repo/templates": "workspace:*",
     "@repo/utils": "workspace:*",
     "@repo/api-types": "workspace:*",
     "@tanstack/react-query": "catalog:",

@@ -17,6 +17,7 @@ A modern, full-stack monorepo starter template demonstrating best practices for 
 ## Overview
 
 Tidebound is a production-ready monorepo architecture built with Turborepo, showcasing:
+
 - **Next.js 16** web application with App Router and React 19
 - **API mocking** with Mock Service Worker (MSW) for both client and server
 - **Comprehensive testing** with Jest and React Testing Library
@@ -28,6 +29,7 @@ Tidebound is a production-ready monorepo architecture built with Turborepo, show
 ## Tech Stack
 
 ### Core Technologies
+
 - **Next.js 16** (App Router) - React framework for web applications
 - **React 19** - UI library
 - **TypeScript** - Type safety across the monorepo
@@ -35,11 +37,13 @@ Tidebound is a production-ready monorepo architecture built with Turborepo, show
 - **pnpm** - Fast, disk-space efficient package manager
 
 ### Data Management
+
 - **TanStack Query (React Query)** - Powerful data synchronization for React
 - **Ky** - Modern HTTP client for REST APIs
 - **Zustand** - Lightweight state management
 
 ### Development & Testing
+
 - **Jest** - Unit and integration testing
 - **React Testing Library** - Component testing utilities
 - **MSW (Mock Service Worker)** - API mocking for development and testing
@@ -47,6 +51,7 @@ Tidebound is a production-ready monorepo architecture built with Turborepo, show
 - **Chromatic** - Visual regression testing
 
 ### Code Quality
+
 - **ESLint** - Code linting with shared configurations
 - **Prettier** - Code formatting
 - **TypeScript** - Static type checking
@@ -217,21 +222,25 @@ apps/web/                      # Next.js app with tests
 ### Why This Architecture?
 
 **1. Shared Configuration = DRY Principle**
+
 - Single source of truth for Jest settings
 - All workspaces use consistent test configuration
 - Update once, applies everywhere
 
 **2. Workspace-Specific Overrides**
+
 - React packages (`ui`, `templates`) use `jest.base.config.js` (jsdom environment)
 - Next.js apps use custom config with `next/jest` (App Router support)
 - Utility packages (`utils`, `services`) use Node environment (faster for non-React code)
 
 **3. Cross-Workspace Testing**
+
 - Tests can import components from other workspaces
 - Shared module mappings resolve `@repo/*` imports (`@repo/ui`, `@repo/templates`, `@repo/utils`, `@repo/mocks`, `@repo/services`)
 - Enables integration testing across packages
 
 **4. Performance Optimized**
+
 - Worker parallelization (`--maxWorkers=50%`)
 - No build dependency (tests run on source files)
 - Turbo caching for unchanged workspaces
@@ -239,11 +248,13 @@ apps/web/                      # Next.js app with tests
 ### Running Tests
 
 **Run all tests across monorepo:**
+
 ```bash
 pnpm test
 ```
 
 **Run tests for specific workspace:**
+
 ```bash
 pnpm --filter @repo/ui test
 pnpm --filter @repo/templates test
@@ -252,11 +263,13 @@ pnpm --filter web test
 ```
 
 **Watch mode (auto-rerun on changes):**
+
 ```bash
 pnpm --filter @repo/ui test:watch
 ```
 
 **Generate coverage report:**
+
 ```bash
 pnpm test:coverage
 ```
@@ -296,7 +309,7 @@ import { renderHook, act } from '@testing-library/react';
 
 function useCounter(initial = 0) {
   const [count, setCount] = useState(initial);
-  const increment = () => setCount(c => c + 1);
+  const increment = () => setCount((c) => c + 1);
   return { count, increment };
 }
 
@@ -358,6 +371,7 @@ app/**/*.{test,spec}.[jt]s?(x)     # Co-located Next.js tests
 ```
 
 **Recommended patterns:**
+
 - ✅ Co-located tests: `button.tsx` → `button.test.tsx`
 - ✅ Test directories: `__tests__/integration.test.tsx`
 - ✅ Group related tests in `describe` blocks
@@ -367,6 +381,7 @@ app/**/*.{test,spec}.[jt]s?(x)     # Co-located Next.js tests
 #### React Packages (ui, templates)
 
 **jest.config.js:**
+
 ```javascript
 const baseConfig = require('@repo/jest-config/base');
 
@@ -383,6 +398,7 @@ module.exports = {
 #### Utility Packages (utils)
 
 **jest.config.js:**
+
 ```javascript
 const baseConfig = require('@repo/jest-config/base');
 
@@ -400,6 +416,7 @@ module.exports = {
 #### Next.js Apps (web)
 
 **jest.config.cjs:**
+
 ```javascript
 const nextJest = require('next/jest');
 const { WORKSPACE_MAPPINGS } = require('@repo/jest-config/shared');
@@ -422,6 +439,7 @@ module.exports = createJestConfig({
 #### Services Package (services)
 
 **jest.config.js:**
+
 ```javascript
 const baseConfig = require('@repo/jest-config/base');
 
@@ -477,6 +495,7 @@ declare module '*.module.css' {
 ```
 
 This gives you full autocomplete for:
+
 - `expect(...).toBeInTheDocument()`
 - `expect(...).toHaveClass('button')`
 - `expect(...).toHaveAttribute('disabled')`
@@ -485,31 +504,41 @@ This gives you full autocomplete for:
 ### Troubleshooting
 
 **"Cannot find module '@repo/ui'"**
+
 - Check `moduleNameMapper` in `packages/jest-config/shared.js`
 - Verify workspace path exists: `packages/ui/src/`
 
 **"SyntaxError: Unexpected token 'export'"**
+
 - Check `transform` configuration includes `@swc/jest`
 - Ensure file extension matches transform pattern
 
 **"toBeInTheDocument is not a function"**
+
 - Verify `jest.setup.ts` imports `@testing-library/jest-dom`
 - Check `types.d.ts` includes reference directive
 
 **CSS/Image import errors**
+
 - Ensure `__mocks__/styleMock.js` and `fileMock.js` exist
 - Check `moduleNameMapper` patterns in config
 
 ### Performance Tips
 
 1. **Use focused tests during development:**
+
    ```typescript
-   test.only('this test', () => { /* ... */ });
+   test.only('this test', () => {
+     /* ... */
+   });
    ```
 
 2. **Skip slow tests in watch mode:**
+
    ```typescript
-   test.skip('slow integration test', () => { /* ... */ });
+   test.skip('slow integration test', () => {
+     /* ... */
+   });
    ```
 
 3. **Parallelize tests:**
@@ -554,21 +583,25 @@ apps/docs/
 ### Key Features
 
 **1. Component-Driven Development**
+
 - Develop UI components in isolation
 - Test different states and variants
 - Rapid prototyping without running the full app
 
 **2. Automatic Documentation**
+
 - Auto-generated docs from TypeScript prop types
 - Interactive controls for component props
 - Live code examples
 
 **3. Cross-Workspace Component Library**
+
 - Import and document components from `@repo/ui`
 - Import and document components from `@repo/templates`
 - Centralized component showcase
 
 **4. Visual Testing with Chromatic**
+
 - Automated visual regression testing
 - Integrated via `pnpm chromatic` script
 - Tracks UI changes across commits
@@ -576,6 +609,7 @@ apps/docs/
 ### Running Storybook
 
 **Start Storybook dev server:**
+
 ```bash
 pnpm storybook
 ```
@@ -583,11 +617,13 @@ pnpm storybook
 This runs Storybook on `http://localhost:6006`
 
 **Build static Storybook:**
+
 ```bash
 pnpm build-storybook
 ```
 
 **Run Chromatic visual tests:**
+
 ```bash
 cd apps/docs
 pnpm chromatic
@@ -598,12 +634,14 @@ pnpm chromatic
 #### Main Configuration (apps/docs/.storybook/main.ts)
 
 The main config defines:
+
 - **Story locations**: `../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)`
 - **Addons**: Essential addons for controls, interactions, docs, and onboarding
 - **Framework**: React with Vite builder
 - **TypeScript**: React-docgen-typescript for prop extraction
 
 Key settings:
+
 ```typescript
 {
   framework: "@storybook/react-vite",
@@ -617,6 +655,7 @@ Key settings:
 #### Preview Configuration (apps/docs/.storybook/preview.ts)
 
 Global story parameters:
+
 - **Controls**: Automatic control type matching for colors and dates
 - **Backgrounds**: Light and dark theme options
 - **Layout**: Configurable layout per story (centered, fullscreen, padded)
@@ -661,16 +700,19 @@ export const Default: Story = {
 Stories are organized by package:
 
 **UI Components (`@repo/ui`):**
+
 - `stories/ui/Button.stories.tsx`
 - `stories/ui/Card.stories.tsx`
 - `stories/ui/Code.stories.tsx`
 
 **Template Components (`@repo/templates`):**
+
 - `stories/templates/Button.stories.tsx`
 
 ### Adding New Stories
 
 1. **Create a new story file** in `apps/docs/stories/`:
+
    ```typescript
    // apps/docs/stories/ui/NewComponent.stories.tsx
    import type { Meta, StoryObj } from '@storybook/react';
@@ -699,15 +741,18 @@ Stories are organized by package:
 ### Story Features
 
 **Tags:**
+
 - `['autodocs']`: Auto-generate documentation page from props
 
 **Parameters:**
+
 - `layout: 'centered'`: Center component in canvas
 - `layout: 'fullscreen'`: Full viewport layout
 - `layout: 'padded'`: Default padding
 
 **ArgTypes:**
 Customize controls for props:
+
 ```typescript
 argTypes: {
   variant: {
@@ -726,10 +771,12 @@ argTypes: {
 Chromatic provides automated visual regression testing:
 
 **Configuration:**
+
 - Project token configured in `apps/docs/package.json`
 - Runs via: `pnpm chromatic`
 
 **Workflow:**
+
 1. Push changes to repository
 2. Run `pnpm chromatic` (or configure CI)
 3. Chromatic captures screenshots of all stories
@@ -737,6 +784,7 @@ Chromatic provides automated visual regression testing:
 5. Review and approve changes
 
 **Benefits:**
+
 - Catch unintended visual changes
 - Review UI changes in PRs
 - Maintain visual consistency
@@ -758,6 +806,7 @@ The Vite builder resolves workspace dependencies automatically.
 ### Addons
 
 **Installed addons:**
+
 - `@storybook/addon-essentials`: Core features (docs, controls, actions, viewport, backgrounds)
 - `@storybook/addon-interactions`: Component interaction testing
 - `@storybook/addon-links`: Navigate between stories
@@ -766,6 +815,7 @@ The Vite builder resolves workspace dependencies automatically.
 ### Best Practices
 
 **1. One Story Per State:**
+
 ```typescript
 export const Default: Story = { args: { variant: 'primary' } };
 export const Secondary: Story = { args: { variant: 'secondary' } };
@@ -773,10 +823,12 @@ export const Disabled: Story = { args: { disabled: true } };
 ```
 
 **2. Meaningful Story Names:**
+
 - Use descriptive names that indicate the component state
 - `WithCustomClass`, `Loading`, `Error`, etc.
 
 **3. Document Props:**
+
 ```typescript
 argTypes: {
   onClick: {
@@ -786,11 +838,13 @@ argTypes: {
 ```
 
 **4. Use Tags for Auto-docs:**
+
 ```typescript
-tags: ['autodocs']  // Generates docs page automatically
+tags: ['autodocs']; // Generates docs page automatically
 ```
 
 **5. Test Interactions:**
+
 ```typescript
 import { userEvent, within } from '@storybook/test';
 
@@ -805,19 +859,23 @@ export const ClickTest: Story = {
 ### Troubleshooting
 
 **"Module not found" errors:**
+
 - Check workspace dependencies are installed: `pnpm install`
 - Verify component exports in package `index.ts`
 
 **TypeScript errors in stories:**
+
 - Check `apps/docs/.storybook/tsconfig.json` extends project config
 - Ensure `@storybook/test` types are available
 
 **Stories not appearing:**
+
 - Verify story file matches pattern: `*.stories.@(js|jsx|ts|tsx)`
 - Check story is in `apps/docs/stories/` directory
 - Restart Storybook dev server
 
 **Vite build errors:**
+
 - Clear Storybook cache: `rm -rf apps/docs/.storybook/cache`
 - Check for conflicting dependencies
 
@@ -831,18 +889,21 @@ export const ClickTest: Story = {
 ## Project Features
 
 ### 1. Modern React Patterns
+
 - **React 19** with latest features and patterns
 - **Server Components** for improved performance
 - **Client Components** with hooks and interactivity
 - **Parallel data fetching** with TanStack Query
 
 ### 2. Type-Safe Development
+
 - Full **TypeScript** coverage across all workspaces
 - Shared TypeScript configurations for consistency
 - Type-safe API clients with Ky
 - Autocomplete and IntelliSense throughout
 
 ### 3. Developer Experience
+
 - **Fast refresh** in development
 - **Hot module replacement** with Vite (Storybook)
 - **Parallel builds** with Turborepo
@@ -851,6 +912,7 @@ export const ClickTest: Story = {
 - **Prettier** for consistent formatting
 
 ### 4. Testing Strategy
+
 - **Unit tests** for components and utilities
 - **Integration tests** across workspaces
 - **MSW** for API mocking without backend
@@ -858,6 +920,7 @@ export const ClickTest: Story = {
 - **Visual regression** with Chromatic
 
 ### 5. Monorepo Benefits
+
 - **Code sharing** between applications
 - **Consistent tooling** across workspaces
 - **Atomic changes** across multiple packages
@@ -865,6 +928,7 @@ export const ClickTest: Story = {
 - **Independent versioning** per package
 
 ### 6. Production Ready
+
 - **Optimized builds** with Next.js
 - **Tree shaking** for minimal bundle sizes
 - **Static generation** where applicable
@@ -914,31 +978,36 @@ pnpm --filter web build         # Build web app
 
 ## Environment Variables
 
->Pull env from vercel
+> Pull env from vercel
 
 ## Architecture Decisions
 
 ### Why Turborepo?
+
 - High-performance builds with intelligent caching
 - Simple task orchestration across workspaces
 - Great developer experience with minimal configuration
 
 ### Why pnpm?
+
 - Fast and efficient with disk space optimization
 - Native monorepo support with workspaces
 - Strict dependency isolation prevents phantom dependencies
 
 ### Why MSW?
+
 - Mock API at the network level (works everywhere)
 - Same mocks for development, testing, and Storybook
 - No backend required for frontend development
 
 ### Why TanStack Query?
+
 - Powerful caching and synchronization
 - Optimistic updates and background refetching
 - Excellent TypeScript support
 
 ### Why Zustand?
+
 - Minimal boilerplate compared to Redux
 - Easy to test and reason about
 - Great TypeScript inference
@@ -973,3 +1042,4 @@ MIT
 - [Jest Documentation](https://jestjs.io/)
 - [Storybook Documentation](https://storybook.js.org/docs)
 - [Zustand Documentation](https://docs.pmnd.rs/zustand)
+- [Font](https://fonts.google.com/specimen/Atkinson+Hyperlegible+Mono)

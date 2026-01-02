@@ -5,6 +5,7 @@ import { MswProvider } from '../../../providers/MswProvider';
 import { ReactQueryProvider } from '../../../providers/ReactQueryProvider';
 import { NextIntlClientProvider, getMessages, locales, setRequestLocale } from '@repo/i18n';
 import { notFound } from 'next/navigation';
+import { Header } from '@repo/templates';
 
 type Props = {
   children: React.ReactNode;
@@ -15,9 +16,18 @@ const geistSans = localFont({
   src: '../../fonts/GeistVF.woff',
   variable: '--font-geist-sans',
 });
-const geistMono = localFont({
-  src: '../../fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
+const atkinsonMono = localFont({
+  src: [
+    {
+      path: '../../fonts/AtkinsonHyperlegibleMono-VariableFont_wght.ttf',
+      style: 'normal',
+    },
+    {
+      path: '../../fonts/AtkinsonHyperlegibleMono-Italic-VariableFont_wght.ttf',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-atkinson-mono',
 });
 
 export const metadata: Metadata = {
@@ -36,10 +46,13 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
   const messages = await getMessages();
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${atkinsonMono.variable} ${geistSans.variable} `}>
         <MswProvider>
           <ReactQueryProvider>
-            <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+            <NextIntlClientProvider messages={messages}>
+              <Header />
+              {children}
+            </NextIntlClientProvider>
           </ReactQueryProvider>
         </MswProvider>
       </body>

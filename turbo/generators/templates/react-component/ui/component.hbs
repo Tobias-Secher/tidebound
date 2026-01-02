@@ -4,14 +4,13 @@ import { ReactNode } from "react";
 import styles from "./{{ pascalCase name }}.module.css";
 
 type {{ pascalCase name }}Props = {
-  children?: ReactNode;
   className?: string;
 }
 
-export const {{ pascalCase name }} = ({ children, className }: {{ pascalCase name }}Props) => {
+export function {{ pascalCase name }}({ children, className }: {{ pascalCase name }}Props) {
   return (
     <div className={className}>
-      {children}
+      {{ pascalCase name }} works
     </div>
   );
 };

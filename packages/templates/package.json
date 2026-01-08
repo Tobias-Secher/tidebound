@@ -32,6 +32,7 @@
   "dependencies": {
     "react": "catalog:",
     "react-dom": "catalog:",
-    "zustand": "catalog:"
+    "zustand": "catalog:",
+    "next": "catalog:"
   }
 }

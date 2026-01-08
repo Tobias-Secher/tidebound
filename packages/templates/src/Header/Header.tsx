@@ -1,5 +1,3 @@
-'use server';
-
 import { ReactNode } from 'react';
 import styles from './Header.module.css';
 import { Links } from './components/Links';

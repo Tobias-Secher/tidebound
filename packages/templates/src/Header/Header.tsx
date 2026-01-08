@@ -1,13 +1,9 @@
-import { ReactNode } from 'react';
 import styles from './Header.module.css';
 import { Links } from './components/Links';
 
-export type HeaderProps = {
-  children?: ReactNode;
-  className?: string;
-};
+export type HeaderProps = {};
 
-export function Header({ children, className }: HeaderProps) {
+export function Header(props: HeaderProps) {
   return (
     <div className={styles.container}>
       <Links />

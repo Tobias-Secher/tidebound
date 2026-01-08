@@ -2,4 +2,24 @@
   display: flex;
   gap: 10px;
   list-style: none;
+
+  & li a {
+    --header-link-underline-color: transparent;
+    color: black;
+
+    height: 50px;
+    display: grid;
+    align-items: center;
+    border-bottom: 1px solid var(--header-link-underline-color);
+    text-decoration: none;
+    transition: border-color 0.3s;
+
+    &:hover {
+      --header-link-underline-color: lightgray;
+    }
+
+    &.active {
+      --header-link-underline-color: black;
+    }
+  }
 }

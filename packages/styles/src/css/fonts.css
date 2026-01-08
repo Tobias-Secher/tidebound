@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Geist Sans';
+  src: url('../fonts/GeistVF.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible Mono';
+  src: url('../fonts/AtkinsonHyperlegibleMono-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible Mono';
+  src: url('../fonts/AtkinsonHyperlegibleMono-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --font-geist-sans: 'Geist Sans', sans-serif;
+  --font-atkinson-mono: 'Atkinson Hyperlegible Mono', monospace;
+}

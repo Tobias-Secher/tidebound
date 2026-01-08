@@ -12,6 +12,7 @@
     "chromatic": "npx chromatic --project-token=chpt_4461d427624b45a"
   },
   "dependencies": {
+    "@repo/styles": "workspace:*",
     "@repo/templates": "workspace:*",
     "@repo/ui": "workspace:*",
     "react": "catalog:",

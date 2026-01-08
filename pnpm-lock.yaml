@@ -182,6 +182,9 @@ importers:
 
   apps/docs:
     dependencies:
+      '@repo/styles':
+        specifier: workspace:*
+        version: link:../../packages/styles
       '@repo/templates':
         specifier: workspace:*
         version: link:../../packages/templates
@@ -273,6 +276,9 @@ importers:
       '@repo/services':
         specifier: workspace:*
         version: link:../../packages/services
+      '@repo/styles':
+        specifier: workspace:*
+        version: link:../../packages/styles
       '@repo/templates':
         specifier: workspace:*
         version: link:../../packages/templates
@@ -534,6 +540,8 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 5.9.2
+
+  packages/styles: {}
 
   packages/templates:
     dependencies:

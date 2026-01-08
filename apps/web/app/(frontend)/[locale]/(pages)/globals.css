@@ -1,9 +1,4 @@
-@import './variables.css';
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import '@repo/styles/variables.css';
 
 body {
   margin: 0;

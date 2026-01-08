@@ -1,0 +1,11 @@
+{
+  "name": "@repo/styles",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./variables.css": "./src/css/variables.css",
+    "./fonts.css": "./src/css/fonts.css",
+    "./globals.css": "./src/css/globals.css",
+    "./index.css": "./src/css/index.css"
+  }
+}

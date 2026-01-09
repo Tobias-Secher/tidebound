@@ -1,10 +1,10 @@
-@import '@repo/styles/variables.css';
+@import '@repo/styles/index.css';
 
-body {
+/* body {
   margin: 0;
   padding: 0;
   font-family: var(--font-atkinson-mono), monospace;
-}
+} */
 /* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;

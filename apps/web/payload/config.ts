@@ -5,6 +5,7 @@ import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 import { collectionsArr, collections } from './collections';
+import { globalsArr } from './globals';
 import { initTranslations } from './init/translations';
 
 const filename = fileURLToPath(import.meta.url);
@@ -18,6 +19,7 @@ export default buildConfig({
     },
   },
   collections: [...collectionsArr],
+  globals: [...globalsArr],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

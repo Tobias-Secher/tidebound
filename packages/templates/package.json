@@ -30,6 +30,8 @@
     "@turbo/gen": "catalog:"
   },
   "dependencies": {
+    "@repo/services": "workspace:*",
+    "@repo/api-types": "workspace:*",
     "react": "catalog:",
     "react-dom": "catalog:",
     "zustand": "catalog:",

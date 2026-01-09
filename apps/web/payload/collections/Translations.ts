@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload';
 import { revalidateTag } from 'next/cache';
-import { locales } from '@repo/i18n';
+import { defaultLocale, locales } from '@repo/i18n';
 import { collectionNames } from '../collectionNames';
 import { CACHE_TAGS } from '@repo/api-types';
 
@@ -12,10 +12,10 @@ export const Translations: CollectionConfig = {
     group: 'Content',
   },
   access: {
-    read: () => true, // Public read access for frontend
+    read: () => true,
   },
   versions: {
-    drafts: true, // Enable draft translations for publishing workflow
+    drafts: true,
   },
   hooks: {
     afterChange: [
@@ -43,7 +43,6 @@ export const Translations: CollectionConfig = {
         description:
           'Translation key using dot notation (e.g., "HomePage.title" or "common.submit")',
       },
-      // Enforce dot notation for nested keys
       validate: (value: unknown) => {
         if (typeof value !== 'string') {
           return 'Key must be a string';
@@ -63,7 +62,7 @@ export const Translations: CollectionConfig = {
         description: 'Namespace/group for organizing translations',
         isClearable: false,
       },
-      index: true, // For efficient querying
+      index: true,
       options: [
         {
           label: 'Common (shared across app)',
@@ -116,7 +115,7 @@ export const Translations: CollectionConfig = {
       fields: locales.map((locale) => ({
         name: locale,
         type: 'text' as const,
-        required: locale === 'en', // English is required
+        required: locale === defaultLocale,
         admin: {
           description: `Translation for ${locale.toUpperCase()}`,
         },

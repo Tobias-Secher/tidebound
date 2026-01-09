@@ -2,24 +2,39 @@
 
 import styles from './Links.module.css';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import type { ResolvedNavItem } from '../../types';
 
-type LinksProps = {};
+type LinksProps = {
+  items: ResolvedNavItem[];
+};
 
-export function Links(props: LinksProps) {
+const localeRegex = RegExp(`^\/[a-zA-Z]{2}(?=\/)`);
+export function Links({ items }: LinksProps) {
+  console.log('Links items:', items);
+
+  const pathname = usePathname();
+  console.log('Current pathname:', pathname.replace(localeRegex, ''));
+
   return (
     <ul className={styles.container}>
-      <li>
-        <Link href="/link1">Link 1</Link>
-      </li>
-      <li>
-        <Link href={'#'}>Link 2</Link>
-      </li>
-      <li>
-        <Link href={'#'}>Link 3</Link>
-      </li>
-      <li>
-        <Link href={'#'}>Link 4</Link>
-      </li>
+      {items.map((item) => {
+        const isActive = pathname.replace(localeRegex, '') === item.href;
+
+        return (
+          <li key={item.id || item.label}>
+            <Link
+              href={item.href}
+              target={item.openInNewTab ? '_blank' : undefined}
+              rel={item.openInNewTab ? 'noopener noreferrer' : undefined}
+              className={isActive ? styles.active : ''}
+            >
+              {item.label}
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 }

@@ -1,2 +1,2 @@
-export * from './payload-types';
-export { CACHE_TAGS } from './cachingTags';
+export * from './payload-types.js';
+export { CACHE_TAGS } from './cachingTags.js';

@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 import { collectionsArr, collections } from './collections';
 import { globalsArr } from './globals';
+import { initHeader } from './init/header';
 import { initTranslations } from './init/translations';
 
 const filename = fileURLToPath(import.meta.url);
@@ -33,5 +34,6 @@ export default buildConfig({
   plugins: [],
   onInit: async (payload) => {
     await initTranslations(payload);
+    await initHeader(payload);
   },
 });

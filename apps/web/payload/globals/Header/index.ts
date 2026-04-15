@@ -76,6 +76,53 @@ export const Header: GlobalConfig = {
   },
   fields: [
     {
+      name: 'toast',
+      type: 'group',
+      label: 'Toast Banner',
+      admin: {
+        description: 'Promotional banner displayed at the top of the header',
+      },
+      fields: [
+        {
+          name: 'enabled',
+          type: 'checkbox',
+          defaultValue: false,
+          admin: {
+            description: 'Show the toast banner',
+          },
+        },
+        {
+          name: 'message',
+          type: 'text',
+          admin: {
+            description: 'The message to display in the toast banner',
+            condition: (_: unknown, siblingData: { enabled?: boolean }) =>
+              siblingData?.enabled === true,
+          },
+        },
+        {
+          name: 'linkUrl',
+          type: 'text',
+          admin: {
+            description: 'Optional link URL',
+            condition: (_: unknown, siblingData: { enabled?: boolean }) =>
+              siblingData?.enabled === true,
+          },
+        },
+        {
+          name: 'linkText',
+          type: 'text',
+          admin: {
+            description: 'Link text (displayed after the message)',
+            condition: (
+              _: unknown,
+              siblingData: { enabled?: boolean; linkUrl?: string },
+            ) => siblingData?.enabled === true && !!siblingData?.linkUrl,
+          },
+        },
+      ],
+    },
+    {
       name: 'navItems',
       type: 'array',
       label: 'Navigation Items',

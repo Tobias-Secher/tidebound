@@ -1,7 +1,42 @@
 .container {
-  padding: 0 var(--spacing-40);
-  border-bottom: 1px solid var(--stroke-light);
-  display: flex;
-  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--background, white);
+}
+
+.nav {
+  padding: 0 var(--spacing-40, 40px);
+  border-bottom: 1px solid var(--stroke-light, #eee);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
+}
+
+.logo {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 400;
+  font-size: 1.25rem;
+  margin: 0;
+  text-align: center;
+}
+
+.desktopNav {
+  display: block;
+}
+
+.rightSlot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .nav {
+    padding: 0 var(--spacing-20, 20px);
+  }
 }

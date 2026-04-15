@@ -1,5 +1,23 @@
 import type { Header, Page } from '@repo/api-types';
 
+export type ResolvedToast = {
+  enabled: boolean;
+  message: string;
+  linkUrl?: string;
+  linkText?: string;
+};
+
+export function resolveToast(toast: Header['toast']): ResolvedToast | null {
+  if (!toast?.enabled || !toast.message) return null;
+
+  return {
+    enabled: true,
+    message: toast.message,
+    linkUrl: toast.linkUrl ?? undefined,
+    linkText: toast.linkText ?? undefined,
+  };
+}
+
 export type ResolvedNavItem = {
   id?: string;
   label: string;

@@ -543,6 +543,24 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Header {
   id: string;
   /**
+   * Promotional banner displayed at the top of the header
+   */
+  toast?: {
+    /**
+     * Show the toast banner
+     */
+    enabled?: boolean | null;
+    message?: string | null;
+    /**
+     * Optional link URL
+     */
+    linkUrl?: string | null;
+    /**
+     * Link text (displayed after the message)
+     */
+    linkText?: string | null;
+  };
+  /**
    * Main navigation menu items
    */
   navItems?:
@@ -601,6 +619,14 @@ export interface Header {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  toast?:
+    | T
+    | {
+        enabled?: T;
+        message?: T;
+        linkUrl?: T;
+        linkText?: T;
+      };
   navItems?:
     | T
     | {

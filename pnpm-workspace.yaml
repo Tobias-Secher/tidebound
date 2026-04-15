@@ -44,6 +44,7 @@ catalog:
 
   # Storybook
   'storybook': '^10.1.11'
+  '@storybook/react': '^10.1.11'
   '@storybook/react-webpack5': '^10.1.11'
   '@storybook/addon-webpack5-compiler-swc': '^4.0.2'
   # '@storybook/addon-essentials': '^10.1.11'

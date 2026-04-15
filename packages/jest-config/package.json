@@ -17,5 +17,12 @@
     "jest": "catalog:",
     "jest-environment-jsdom": "catalog:",
     "@types/jest": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "catalog:"
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit"
   }
 }

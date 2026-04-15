@@ -23,7 +23,8 @@ export function flatToNested(
   for (const doc of translations) {
     // Fallback to English if translation doesn't exist for requested locale
     // If both are missing, use the key itself to make the error visible
-    const value = doc.translations[locale] || doc.translations.en || doc.key;
+    const translations = doc.translations as Record<string, string | null | undefined>;
+    const value = translations[locale] || doc.translations.en || doc.key;
 
     // If key doesn't include namespace, prepend it
     const fullKey = doc.key.includes(".")

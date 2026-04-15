@@ -13,7 +13,8 @@
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:translations": "tsx --env-file=../../.env.local scripts/generateTypes.ts",
-    "env-pull": "vercel env pull --environment=development"
+    "env-pull": "vercel env pull --environment=development",
+    "check-types": "tsc --noEmit"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

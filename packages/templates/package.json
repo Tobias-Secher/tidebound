@@ -14,11 +14,12 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@repo/jest-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@testing-library/jest-dom": "catalog:",
     "@testing-library/react": "catalog:",
     "@testing-library/user-event": "catalog:",
+    "@turbo/gen": "catalog:",
     "@types/jest": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
@@ -26,15 +27,15 @@
     "eslint": "catalog:",
     "jest": "catalog:",
     "jest-environment-jsdom": "catalog:",
-    "typescript": "catalog:",
-    "@turbo/gen": "catalog:"
+    "typescript": "catalog:"
   },
   "dependencies": {
-    "@repo/services": "workspace:*",
     "@repo/api-types": "workspace:*",
+    "@repo/services": "workspace:*",
+    "clsx": "catalog:",
+    "next": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "zustand": "catalog:",
-    "next": "catalog:"
+    "zustand": "catalog:"
   }
 }

@@ -32,6 +32,7 @@ catalog:
   'ky': '^1.14.0'
   '@tanstack/react-query': '^5.90.11'
   'tsx': '^4.19.2'
+  'clsx': '^2.1.1'
 
   # Jest and Testing
   '@swc/jest': ^0.2.39

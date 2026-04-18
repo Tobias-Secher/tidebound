@@ -32,35 +32,36 @@ type NavItemLink = {
   externalUrl?: string | null;
 };
 
-function resolveNavItemUrl(item: NavItemLink): string {
+function resolveNavItemUrl(item: NavItemLink, locale: string): string {
   if (item.linkType === 'external' && item.externalUrl) {
     return item.externalUrl;
   }
 
   if (item.linkType === 'internal' && item.page) {
     if (typeof item.page === 'string') {
-      return '/';
+      return `/${locale}`;
     }
-    return `/${item.page.slug}`;
+    return `/${locale}/${item.page.slug}`;
   }
 
-  return '/';
+  return `/${locale}`;
 }
 
 export function resolveNavItems(
   navItems: Header['navItems'],
+  locale: string,
 ): ResolvedNavItem[] {
   if (!navItems) return [];
 
   return navItems.map((item) => ({
     id: item.id ?? undefined,
     label: item.label,
-    href: resolveNavItemUrl(item),
+    href: resolveNavItemUrl(item, locale),
     openInNewTab: item.openInNewTab ?? undefined,
     children: item.children?.map((child) => ({
       id: child.id ?? undefined,
       label: child.label,
-      href: resolveNavItemUrl(child),
+      href: resolveNavItemUrl(child, locale),
       openInNewTab: child.openInNewTab ?? undefined,
     })),
   }));

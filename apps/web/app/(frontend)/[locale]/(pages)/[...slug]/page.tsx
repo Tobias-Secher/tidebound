@@ -1,4 +1,4 @@
-import {getPage} from "@repo/services";
+import { getPage } from '@repo/services';
 // import type { Page } from "@repo/api-types";
 
 type PageProps = {
@@ -7,7 +7,7 @@ type PageProps = {
 
 export default async function CatchAllPage({ params }: PageProps) {
   const resolvedParams = await params;
-  const slug = resolvedParams.slug.join("/");
+  const slug = resolvedParams.slug.join('/');
 
   let page = await getPage({ slug });
   let error = false;
@@ -17,6 +17,8 @@ export default async function CatchAllPage({ params }: PageProps) {
   // } catch (e) {
   //   error = true;
   // }
+
+  console.log('**page: ', page);
 
   if (error || !page) {
     return (
@@ -34,7 +36,7 @@ export default async function CatchAllPage({ params }: PageProps) {
       <div className="space-y-8">
         {page.modules?.map((module: any, index: number) => {
           switch (module.blockType) {
-            case "hero":
+            case 'hero':
               return (
                 <div key={index} className="hero relative bg-gray-100 p-12 rounded-lg">
                   <h2 className="text-3xl font-bold mb-2">{module.heading}</h2>
@@ -44,21 +46,21 @@ export default async function CatchAllPage({ params }: PageProps) {
                 </div>
               );
 
-            case "content":
+            case 'content':
               return (
                 <div key={index} className="prose max-w-none">
                   <div dangerouslySetInnerHTML={{ __html: module.richText }} />
                 </div>
               );
 
-            case "imageBlock":
+            case 'imageBlock':
               return (
                 <div key={index} className="image-block">
                   {module.image && (
                     <div>
                       <img
                         src={module.image.url}
-                        alt={module.caption || ""}
+                        alt={module.caption || ''}
                         className="w-full rounded-lg"
                       />
                       {module.caption && (
@@ -69,17 +71,11 @@ export default async function CatchAllPage({ params }: PageProps) {
                 </div>
               );
 
-            case "twoColumn":
+            case 'twoColumn':
               return (
                 <div key={index} className="grid md:grid-cols-2 gap-8">
-                  <div
-                    className="prose"
-                    dangerouslySetInnerHTML={{ __html: module.leftColumn }}
-                  />
-                  <div
-                    className="prose"
-                    dangerouslySetInnerHTML={{ __html: module.rightColumn }}
-                  />
+                  <div className="prose" dangerouslySetInnerHTML={{ __html: module.leftColumn }} />
+                  <div className="prose" dangerouslySetInnerHTML={{ __html: module.rightColumn }} />
                 </div>
               );
 

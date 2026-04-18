@@ -50,7 +50,7 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
         <MswProvider>
           <ReactQueryProvider>
             <NextIntlClientProvider messages={messages}>
-              <Header />
+              <Header locale={locale} />
               {children}
             </NextIntlClientProvider>
           </ReactQueryProvider>

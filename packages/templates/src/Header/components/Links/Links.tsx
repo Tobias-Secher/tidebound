@@ -1,18 +1,24 @@
+'use client';
 import styles from './Links.module.css';
 import Link from 'next/link';
 import type { ResolvedNavItem } from '../../types';
 import clsx from 'clsx';
+import { usePathname } from 'next/navigation';
 
 type LinksProps = {
   items: ResolvedNavItem[];
 };
 
+const localeRegex = /^\/[a-zA-Z]{2}(?=\/)/;
+
 export function Links({ items }: LinksProps) {
+  const pathname = usePathname();
   return (
     <ul className={styles.container}>
       {items.map((item, index) => {
         const key = item.id ?? `menu-item-${index}`;
         const hasChildren = item.children && item.children.length > 0;
+        const isActive = pathname.replace(localeRegex, '') === item.href;
 
         if (!hasChildren) {
           return (
@@ -21,7 +27,7 @@ export function Links({ items }: LinksProps) {
                 href={item.href}
                 target={item.openInNewTab ? '_blank' : undefined}
                 rel={item.openInNewTab ? 'noopener noreferrer' : undefined}
-                className={styles.link}
+                className={clsx(styles.link, isActive && styles.active)}
               >
                 {item.label}
               </Link>
@@ -48,7 +54,7 @@ export function Links({ items }: LinksProps) {
                       href={child.href}
                       target={child.openInNewTab ? '_blank' : undefined}
                       rel={child.openInNewTab ? 'noopener noreferrer' : undefined}
-                      className={clsx(styles.link, styles.sub)}
+                      className={clsx(styles.link, styles.sub, isActive && styles.active)}
                     >
                       {child.label}
                     </Link>

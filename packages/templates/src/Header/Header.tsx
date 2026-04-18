@@ -5,9 +5,13 @@ import { ToastBar } from './components/ToastBar';
 import { getHeader } from '@repo/services';
 import { resolveNavItems, resolveToast } from './types';
 
-export async function Header() {
+type HeaderProps = {
+  locale: string;
+};
+
+export async function Header({ locale }: HeaderProps) {
   const headerData = await getHeader();
-  const navItems = resolveNavItems(headerData?.navItems);
+  const navItems = resolveNavItems(headerData?.navItems, locale);
   const toast = resolveToast(headerData?.toast);
 
   return (

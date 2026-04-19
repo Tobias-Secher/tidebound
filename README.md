@@ -69,7 +69,7 @@ This project uses a monorepo architecture with pnpm workspaces and Turborepo for
   - Includes comprehensive Jest test setup
 
 - **`docs`** - Storybook application for component documentation
-  - Showcases components from `@repo/ui` and `@repo/templates`
+  - Showcases components from `@repo/ui`
   - Configured with Chromatic for visual regression testing
   - Built with Vite for fast development
 
@@ -79,10 +79,6 @@ This project uses a monorepo architecture with pnpm workspaces and Turborepo for
   - Reusable UI components (Button, Card, Code)
   - Fully tested with Jest and React Testing Library
   - Documented in Storybook
-
-- **`@repo/templates`** - Template components with state management
-  - Components using Zustand for state
-  - Examples of complex component patterns
 
 - **`@repo/services`** - Data fetching and API services
   - TanStack Query hooks for data synchronization
@@ -229,14 +225,14 @@ apps/web/                      # Next.js app with tests
 
 **2. Workspace-Specific Overrides**
 
-- React packages (`ui`, `templates`) use `jest.base.config.js` (jsdom environment)
+- React packages (`ui`) use `jest.base.config.js` (jsdom environment)
 - Next.js apps use custom config with `next/jest` (App Router support)
 - Utility packages (`utils`, `services`) use Node environment (faster for non-React code)
 
 **3. Cross-Workspace Testing**
 
 - Tests can import components from other workspaces
-- Shared module mappings resolve `@repo/*` imports (`@repo/ui`, `@repo/templates`, `@repo/utils`, `@repo/mocks`, `@repo/services`)
+- Shared module mappings resolve `@repo/*` imports (`@repo/ui`, `@repo/utils`, `@repo/mocks`, `@repo/services`)
 - Enables integration testing across packages
 
 **4. Performance Optimized**
@@ -257,7 +253,6 @@ pnpm test
 
 ```bash
 pnpm --filter @repo/ui test
-pnpm --filter @repo/templates test
 pnpm --filter @repo/services test
 pnpm --filter web test
 ```
@@ -576,7 +571,6 @@ apps/docs/
     │   ├── Button.stories.tsx
     │   ├── Card.stories.tsx
     │   └── Code.stories.tsx
-    └── templates/           # Stories for @repo/templates
         └── Button.stories.tsx
 ```
 
@@ -597,7 +591,6 @@ apps/docs/
 **3. Cross-Workspace Component Library**
 
 - Import and document components from `@repo/ui`
-- Import and document components from `@repo/templates`
 - Centralized component showcase
 
 **4. Visual Testing with Chromatic**
@@ -705,10 +698,6 @@ Stories are organized by package:
 - `stories/ui/Card.stories.tsx`
 - `stories/ui/Code.stories.tsx`
 
-**Template Components (`@repo/templates`):**
-
-- `stories/templates/Button.stories.tsx`
-
 ### Adding New Stories
 
 1. **Create a new story file** in `apps/docs/stories/`:
@@ -796,9 +785,6 @@ Storybook seamlessly imports components from workspace packages:
 ```typescript
 // Import from @repo/ui
 import { Button } from '@repo/ui/button';
-
-// Import from @repo/templates
-import { TemplateButton } from '@repo/templates/button';
 ```
 
 The Vite builder resolves workspace dependencies automatically.

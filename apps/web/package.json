@@ -25,7 +25,6 @@
     "@repo/mocks": "workspace:*",
     "@repo/services": "workspace:*",
     "@repo/ui": "workspace:*",
-    "@repo/templates": "workspace:*",
     "@repo/utils": "workspace:*",
     "@repo/api-types": "workspace:*",
     "@tanstack/react-query": "catalog:",
@@ -35,7 +34,8 @@
     "payload": "^3.69.0",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "sharp": "catalog:"
+    "sharp": "catalog:",
+    "clsx": "catalog:"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

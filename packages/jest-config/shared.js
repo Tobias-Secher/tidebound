@@ -11,7 +11,6 @@
 const WORKSPACE_MAPPINGS = {
   '^@repo/ui/(.*)$': '<rootDir>/../../packages/ui/src/$1',
   '^@repo/utils/(.*)$': '<rootDir>/../../packages/utils/src/$1',
-  '^@repo/templates/(.*)$': '<rootDir>/../../packages/templates/src/$1',
   '^@repo/mocks/(.*)$': '<rootDir>/../../packages/mocks/src/$1',
   '^@repo/services$': '<rootDir>/../../packages/services/src/index.ts',
 };

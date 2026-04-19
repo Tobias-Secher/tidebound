@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@repo/styles": "workspace:*",
-    "@repo/templates": "workspace:*",
     "@repo/ui": "workspace:*",
     "next": "catalog:",
     "react": "catalog:",

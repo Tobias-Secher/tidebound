@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@repo/api-types": "workspace:*",
+    "@repo/i18n": "workspace:*",
     "@repo/services": "workspace:*",
     "clsx": "catalog:",
     "next": "catalog:",

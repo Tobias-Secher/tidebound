@@ -1,12 +1,14 @@
+import Link from 'next/link';
 import styles from './Header.module.css';
 import { Links } from './components/Links';
 import { MobileNav } from './components/MobileNav';
 import { ToastBar } from './components/ToastBar';
 import { getHeader } from '@repo/services';
 import { resolveNavItems, resolveToast } from './types';
+import type { Locale } from '@repo/i18n';
 
 type HeaderProps = {
-  locale: string;
+  locale: Locale;
 };
 
 export async function Header({ locale }: HeaderProps) {
@@ -23,11 +25,17 @@ export async function Header({ locale }: HeaderProps) {
           linkText={toast.linkText}
         />
       )}
-      <nav className={styles.nav}>
+      <nav className={styles.nav} aria-label="Main">
         <div className={styles.desktopNav}>
           <Links items={navItems} />
         </div>
-        <h1 className={styles.logo}>TIDEBOUND</h1>
+        <Link
+          href={`/${locale}`}
+          className={styles.logo}
+          aria-label="Tidebound home"
+        >
+          TIDEBOUND
+        </Link>
         <div className={styles.rightSlot}>
           <MobileNav items={navItems} />
         </div>

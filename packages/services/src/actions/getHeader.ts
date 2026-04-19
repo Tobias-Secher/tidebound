@@ -15,8 +15,7 @@ export async function getHeader({ signal }: Args = {}) {
           },
           signal: signal,
         })
-        .json()
-        .then((response: unknown) => response as Header | null);
+        .json<Header | null>();
     },
     [CACHE_TAGS.header.all],
     { tags: [CACHE_TAGS.header.all] },

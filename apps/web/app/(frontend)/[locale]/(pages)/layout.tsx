@@ -3,7 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import { MswProvider } from '../../../providers/MswProvider';
 import { ReactQueryProvider } from '../../../providers/ReactQueryProvider';
-import { NextIntlClientProvider, getMessages, locales, setRequestLocale } from '@repo/i18n';
+import { NextIntlClientProvider, getMessages, locales, setRequestLocale, type Locale } from '@repo/i18n';
 import { notFound } from 'next/navigation';
 import { Header } from '@repo/templates';
 
@@ -38,11 +38,12 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children, params }: Readonly<Props>) {
   const { locale } = await params;
 
-  if (!locales.includes(locale as any)) {
+  if (!locales.includes(locale as Locale)) {
     notFound();
   }
 
-  setRequestLocale(locale as any);
+  const typedLocale = locale as Locale;
+  setRequestLocale(typedLocale);
   const messages = await getMessages();
   return (
     <html lang="en">
@@ -50,7 +51,7 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
         <MswProvider>
           <ReactQueryProvider>
             <NextIntlClientProvider messages={messages}>
-              <Header locale={locale} />
+              <Header locale={typedLocale} />
               {children}
             </NextIntlClientProvider>
           </ReactQueryProvider>

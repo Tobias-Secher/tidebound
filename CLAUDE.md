@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+When creating new labels, always add them in the payload init folder for the correct collection
+
 ## Project Overview
 
 Tidebound is a webshop for scuba, diving, and water sport equipment. It's a pnpm + Turborepo monorepo with a Next.js 16 frontend and Payload CMS backend sharing a single app.
@@ -72,6 +74,7 @@ pnpm format                       # Prettier
 - Middleware at `apps/web/middleware.ts` handles locale routing (always prefixed).
 - Translation fallback: requested locale → English → key name.
 - After adding CMS translations, run `pnpm generate:translations` to update types.
+- When using a link/anchor tag always use the nextIntl's Link component
 
 ### MSW Mocking
 

@@ -1,14 +1,14 @@
 import { apiClient } from '../apiClient';
 import { FetcherBaseArgs } from '../types';
-import { Page, CACHE_TAGS } from '@repo/api-types';
+import { Page, PaginatedResponse, CACHE_TAGS } from '@repo/api-types';
 
 type Args = {
   slug: string;
 } & FetcherBaseArgs;
 
 export async function getPage({ slug, signal }: Args) {
-  return apiClient
-    .get(`pages`, {
+  const response = await apiClient
+    .get('pages', {
       searchParams: {
         'where[slug][equals]': slug,
         limit: '1',
@@ -18,6 +18,7 @@ export async function getPage({ slug, signal }: Args) {
         tags: [CACHE_TAGS.pages.all, CACHE_TAGS.pages.page(slug)],
       },
     })
-    .json()
-    .then((response: any) => response?.docs?.[0] as Page | null);
+    .json<PaginatedResponse<Page>>();
+
+  return response.docs[0] ?? null;
 }

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { {{ pascalCase name }} } from '@repo/ui/{{ kebabCase name }}';
 
-const meta = {
+const meta: Meta<typeof {{ pascalCase name }}>= {
   title: 'UI/{{ pascalCase name }}',
   component: {{ pascalCase name }},
   parameters: {

@@ -2,8 +2,12 @@
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist",
-    "skipLibCheck": true
+    "declaration": true,
+    "declarationMap": true,
+    "skipLibCheck": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   },
-  "include": ["src", "types.d.ts"],
+  "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }

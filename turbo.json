@@ -5,13 +5,14 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "lint": {
       "dependsOn": ["^lint"]
     },
     "check-types": {
-      "dependsOn": ["^check-types"]
+      "dependsOn": ["^check-types"],
+      "cache": false
     },
     "test": {
       "inputs": [
@@ -55,6 +56,7 @@
       "interactive": true
     },
     "generate:importmap": {
+      "dependsOn": ["@repo/api-types#build"],
       "cache": false
     },
     "build-storybook": {

@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { {{ pascalCase name }} as UI{{ pascalCase name }} } from "@repo/ui/{{ pascalCase name }}";
 import styles from "./{{ kebabCase name }}.module.css";
 
-export type {{ pascalCase name }}Props {
+type {{ pascalCase name }}Props = {
   children?: ReactNode;
   className?: string;
 }

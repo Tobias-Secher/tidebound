@@ -1,17 +1,15 @@
 "use client";
 
-import { ReactNode } from "react";
-import styles from "./{{ kebabCase name }}.module.css";
+import styles from "./{{ pascalCase name }}.module.css";
 
-export type {{ pascalCase name }}Props {
-  children?: ReactNode;
+type {{ pascalCase name }}Props = {
   className?: string;
 }
 
-export const {{ pascalCase name }} = ({ children, className }: {{ pascalCase name }}Props) => {
+export function {{ pascalCase name }}({ className }: {{ pascalCase name }}Props) {
   return (
     <div className={styles.container}>
-      {children}
+      {{ pascalCase name }} works
     </div>
   );
 };

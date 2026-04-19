@@ -7,4 +7,7 @@ export const CACHE_TAGS = {
     all: 'translations',
     locale: (locale: string) => `translations-${locale}`,
   },
+  header: {
+    all: 'header',
+  },
 } as const;

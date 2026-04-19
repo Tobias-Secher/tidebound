@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import getUser from "../actions/getUser";
+import { getUser } from "../actions/getUser";
 
 type Args = Partial<Omit<Parameters<typeof getUser>[0], "signal">>;
 

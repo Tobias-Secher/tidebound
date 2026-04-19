@@ -91,8 +91,12 @@ export interface Config {
     defaultIDType: string;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    header: Header;
+  };
+  globalsSelect: {
+    header: HeaderSelect<false> | HeaderSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -531,6 +535,122 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: string;
+  /**
+   * Promotional banner displayed at the top of the header
+   */
+  toast?: {
+    /**
+     * Show the toast banner
+     */
+    enabled?: boolean | null;
+    message?: string | null;
+    /**
+     * Optional link URL
+     */
+    linkUrl?: string | null;
+    /**
+     * Link text (displayed after the message)
+     */
+    linkText?: string | null;
+  };
+  /**
+   * Main navigation menu items
+   */
+  navItems?:
+    | {
+        /**
+         * Display text for this navigation item
+         */
+        label: string;
+        linkType: 'internal' | 'external';
+        /**
+         * Select an internal page
+         */
+        page?: (string | null) | Page;
+        /**
+         * Enter the full external URL (e.g., https://example.com)
+         */
+        externalUrl?: string | null;
+        /**
+         * Open link in a new browser tab
+         */
+        openInNewTab?: boolean | null;
+        /**
+         * Optional nested navigation items (dropdown menu)
+         */
+        children?:
+          | {
+              /**
+               * Display text for this navigation item
+               */
+              label: string;
+              linkType: 'internal' | 'external';
+              /**
+               * Select an internal page
+               */
+              page?: (string | null) | Page;
+              /**
+               * Enter the full external URL (e.g., https://example.com)
+               */
+              externalUrl?: string | null;
+              /**
+               * Open link in a new browser tab
+               */
+              openInNewTab?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  _status?: ('draft' | 'published') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  toast?:
+    | T
+    | {
+        enabled?: T;
+        message?: T;
+        linkUrl?: T;
+        linkText?: T;
+      };
+  navItems?:
+    | T
+    | {
+        label?: T;
+        linkType?: T;
+        page?: T;
+        externalUrl?: T;
+        openInNewTab?: T;
+        children?:
+          | T
+          | {
+              label?: T;
+              linkType?: T;
+              page?: T;
+              externalUrl?: T;
+              openInNewTab?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdownTrigger {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  text-align: inherit;
+
+  &:has(+ .popover:popover-open) {
+    --header-link-underline-color: black;
+  }
+}
+
+.popover {
+  position-anchor: --header-nav;
+  top: anchor(bottom);
+  left: 0;
+  right: 0;
+  width: 100vw;
+  max-width: none;
+  margin: 0;
+  padding-inline: var(--spacing-40, 40px);
+  border: 0;
+  border-bottom: 1px solid var(--stroke-light, #eee);
+  background: var(--background, white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  & .popoverList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-20, 20px);
+  }
+}
+
+@supports not (anchor-name: --x) {
+  .popover {
+    top: 50px;
+  }
+}
+
+.link {
+  --header-link-underline-color: transparent;
+  color: black;
+  cursor: pointer;
+  display: grid;
+  align-items: center;
+  border-bottom: 1px solid var(--header-link-underline-color);
+  text-decoration: none;
+  transition: border-color 0.3s;
+  line-height: 100%;
+  padding-block: 20px;
+
+  &:hover {
+    --header-link-underline-color: lightgray;
+  }
+
+  &.active {
+    --header-link-underline-color: black;
+  }
+
+  &.sub {
+    padding-block: 10px;
+    font-size: 14px;
+  }
+}

@@ -2,11 +2,11 @@ packages:
   - apps/*
   - packages/*
 catalog:
-  "@eslint/js": ^9.39.1
-  "@next/eslint-plugin-next": ^15.5.0
-  "@types/node": ^22.15.3
-  "@types/react": 19.2.2
-  "@types/react-dom": 19.2.2
+  '@eslint/js': ^9.39.1
+  '@next/eslint-plugin-next': ^15.5.0
+  '@types/node': ^22.15.3
+  '@types/react': 19.2.2
+  '@types/react-dom': 19.2.2
   eslint: ^9.39.1
   eslint-config-prettier: ^10.1.1
   eslint-plugin-only-warn: ^1.1.0
@@ -19,59 +19,58 @@ catalog:
   react: ^19.2.1
   react-dom: ^19.2.1
   turbo: ^2.6.1
-  "@turbo/gen": ^2.6.3
+  '@turbo/gen': ^2.6.3
   typescript: 5.9.2
   typescript-eslint: ^8.46.3
   msw: ^2.0.0
   zustand: ^5.0.8
 
   # Tooling
-  "@swc/core": ^1.15.3
+  '@swc/core': ^1.15.3
   identity-obj-proxy: ^3.0.0
   esbuild: ^0.24.2
-  "ky": "^1.14.0"
-  "@tanstack/react-query": "^5.90.11"
-  "tsx": "^4.19.2"
+  'ky': '^1.14.0'
+  '@tanstack/react-query': '^5.90.11'
+  'tsx': '^4.19.2'
+  'clsx': '^2.1.1'
 
   # Jest and Testing
-  "@swc/jest": ^0.2.39
+  '@swc/jest': ^0.2.39
   jest: ^30.2.0
-  "@types/jest": ^29.5.11
-  "@testing-library/jest-dom": "^6.9.1"
-  "@testing-library/react": "^16.3.0"
-  "@testing-library/user-event": "^14.6.1"
-  "jest-environment-jsdom": "^30.2.0"
+  '@types/jest': ^29.5.11
+  '@testing-library/jest-dom': '^6.9.1'
+  '@testing-library/react': '^16.3.0'
+  '@testing-library/user-event': '^14.6.1'
+  'jest-environment-jsdom': '^30.2.0'
 
   # Storybook
-  "@storybook/react": "^8.4.7"
-  "@storybook/react-vite": "^8.4.7"
-  "@storybook/addon-essentials": "^8.4.7"
-  "@storybook/addon-interactions": "^8.4.7"
-  "@storybook/addon-links": "^8.4.7"
-  "@storybook/addon-onboarding": "^8.4.7"
-  "@storybook/blocks": "^8.4.7"
-  "@storybook/test": "^8.4.7"
-  storybook: "^8.4.7"
-  "chromatic": "^13.3.4"
+  'storybook': '^10.1.11'
+  '@storybook/react': '^10.1.11'
+  '@storybook/react-webpack5': '^10.1.11'
+  '@storybook/addon-webpack5-compiler-swc': '^4.0.2'
+  # '@storybook/addon-essentials': '^10.1.11'
+  # '@storybook/addon-interactions': '^10.1.11'
+  # '@storybook/addon-links': '^10.1.11'
+  'eslint-plugin-storybook': '^10.1.11'
 
   # Payload CMS
-  "@payloadcms/db-mongodb": "3.66.0"
-  "@payloadcms/next": "3.66.0"
-  "@payloadcms/richtext-lexical": "3.66.0"
-  "@payloadcms/ui": "3.66.0"
-  "cross-env": "^7.0.3"
-  "dotenv": "16.4.7"
-  "graphql": "^16.8.1"
-  "payload": "3.66.0"
-  "sharp": "0.34.2"
-  "@playwright/test": "1.56.1"
-  "playwright": "1.56.1"
-  "playwright-core": "1.56.1"
-  "@vitejs/plugin-react": "4.5.2"
-  "eslint-config-next": "15.4.7"
-  "jsdom": "26.1.0"
-  "vite-tsconfig-paths": "5.1.4"
-  "vitest": "3.2.3"
+  '@payloadcms/db-mongodb': '3.66.0'
+  '@payloadcms/next': '3.66.0'
+  '@payloadcms/richtext-lexical': '3.66.0'
+  '@payloadcms/ui': '3.66.0'
+  'cross-env': '^7.0.3'
+  'dotenv': '16.4.7'
+  'graphql': '^16.8.1'
+  'payload': '3.66.0'
+  'sharp': '0.34.2'
+  '@playwright/test': '1.56.1'
+  'playwright': '1.56.1'
+  'playwright-core': '1.56.1'
+  '@vitejs/plugin-react': '4.5.2'
+  'eslint-config-next': '15.4.7'
+  'jsdom': '26.1.0'
+  'vite-tsconfig-paths': '5.1.4'
+  'vitest': '3.2.3'
 
   # Next intl
-  "next-intl": "^4.6.1"
+  'next-intl': '^4.6.1'

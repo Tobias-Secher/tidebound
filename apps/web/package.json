@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.69.0",
+    "@repo/styles": "workspace:*",
     "@payloadcms/next": "^3.69.0",
     "@payloadcms/richtext-lexical": "^3.69.0",
     "@payloadcms/ui": "3.69.0",
@@ -24,6 +25,7 @@
     "@repo/mocks": "workspace:*",
     "@repo/services": "workspace:*",
     "@repo/ui": "workspace:*",
+    "@repo/templates": "workspace:*",
     "@repo/utils": "workspace:*",
     "@repo/api-types": "workspace:*",
     "@tanstack/react-query": "catalog:",

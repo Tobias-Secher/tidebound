@@ -42,19 +42,19 @@ pnpm format                       # Prettier
 
 ### Key Packages
 
-| Package | Purpose |
-|---|---|
-| `@repo/ui` | Shared presentational components. Exported via `@repo/ui/component-name`. |
-| `@repo/templates` | Stateful page-level components (use Zustand). |
-| `@repo/services` | TanStack Query hooks + Ky HTTP client for API calls. |
-| `@repo/mocks` | MSW handlers. Exports `server` and `browser` entry points. |
-| `@repo/i18n` | next-intl integration. CMS is the source of truth for translations. |
-| `@repo/api-types` | Payload-generated TypeScript types (`payload-types.ts`). Build with `pnpm --filter @repo/api-types build` before other packages that depend on it. |
-| `@repo/utils` | Pure utility functions. |
-| `@repo/styles` | CSS variables, fonts, and global styles. |
-| `@repo/jest-config` | Shared Jest base config and workspace mappings. |
-| `@repo/eslint-config` | Shared ESLint configs. |
-| `@repo/typescript-config` | Shared tsconfig bases. |
+| Package                   | Purpose                                                                                                                                            |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@repo/ui`                | Shared presentational components. Exported via `@repo/ui/component-name`.                                                                          |
+| `@repo/templates`         | Stateful page-level components (use Zustand).                                                                                                      |
+| `@repo/services`          | TanStack Query hooks + Ky HTTP client for API calls.                                                                                               |
+| `@repo/mocks`             | MSW handlers. Exports `server` and `browser` entry points.                                                                                         |
+| `@repo/i18n`              | next-intl integration. CMS is the source of truth for translations.                                                                                |
+| `@repo/api-types`         | Payload-generated TypeScript types (`payload-types.ts`). Build with `pnpm --filter @repo/api-types build` before other packages that depend on it. |
+| `@repo/utils`             | Pure utility functions.                                                                                                                            |
+| `@repo/styles`            | CSS variables, fonts, and global styles.                                                                                                           |
+| `@repo/jest-config`       | Shared Jest base config and workspace mappings.                                                                                                    |
+| `@repo/eslint-config`     | Shared ESLint configs.                                                                                                                             |
+| `@repo/typescript-config` | Shared tsconfig bases.                                                                                                                             |
 
 ### Payload CMS
 
@@ -96,6 +96,6 @@ Key vars (see `turbo.json` globalEnv): `NODE_ENV`, `NEXT_PUBLIC_USE_MSW`, `API_U
 
 ### Styling
 
-- CSS Modules for component styles.
+- CSS Modules for component styles. Always use nested css when possible for best specificity possible
 - Global CSS variables and fonts in `@repo/styles`.
 - Imported as `@repo/styles/variables.css`, `@repo/styles/globals.css`, etc.

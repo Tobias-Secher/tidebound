@@ -1,6 +1,6 @@
 # Tidebound Component Documentation (Storybook)
 
-This app hosts Storybook for the Tidebound monorepo, providing interactive documentation for components in `@repo/ui` and `@repo/templates`.
+This app hosts Storybook for the Tidebound monorepo, providing interactive documentation for components in `@repo/ui`.
 
 ## Getting Started
 
@@ -28,8 +28,6 @@ apps/docs/
     │   ├── Button.stories.tsx
     │   ├── Card.stories.tsx
     │   └── Code.stories.tsx
-    └── templates/      # Stories for @repo/templates components
-        └── Button.stories.tsx
 ```
 
 ## Adding Stories
@@ -37,6 +35,7 @@ apps/docs/
 Create a new `.stories.tsx` file in the appropriate directory:
 
 **For @repo/ui components:**
+
 ```typescript
 // stories/ui/YourComponent.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
@@ -44,28 +43,6 @@ import { YourComponent } from '@repo/ui/your-component';
 
 const meta = {
   title: 'UI/YourComponent',
-  component: YourComponent,
-  tags: ['autodocs'],
-} satisfies Meta<typeof YourComponent>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
-  args: {
-    // your props here
-  },
-};
-```
-
-**For @repo/templates components:**
-```typescript
-// stories/templates/YourComponent.stories.tsx
-import type { Meta, StoryObj } from '@storybook/react';
-import { YourComponent } from '@repo/templates/your-component';
-
-const meta = {
-  title: 'Templates/YourComponent',
   component: YourComponent,
   tags: ['autodocs'],
 } satisfies Meta<typeof YourComponent>;

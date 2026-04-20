@@ -47,10 +47,8 @@ pnpm format                       # Prettier
 | Package                   | Purpose                                                                                                                                            |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `@repo/ui`                | Shared presentational components. Exported via `@repo/ui/component-name`.                                                                          |
-| `@repo/templates`         | Stateful page-level components (use Zustand).                                                                                                      |
 | `@repo/services`          | TanStack Query hooks + Ky HTTP client for API calls.                                                                                               |
 | `@repo/mocks`             | MSW handlers. Exports `server` and `browser` entry points.                                                                                         |
-| `@repo/i18n`              | next-intl integration. CMS is the source of truth for translations.                                                                                |
 | `@repo/api-types`         | Payload-generated TypeScript types (`payload-types.ts`). Build with `pnpm --filter @repo/api-types build` before other packages that depend on it. |
 | `@repo/utils`             | Pure utility functions.                                                                                                                            |
 | `@repo/styles`            | CSS variables, fonts, and global styles.                                                                                                           |
@@ -91,7 +89,7 @@ Key vars (see `turbo.json` globalEnv): `NODE_ENV`, `NEXT_PUBLIC_USE_MSW`, `API_U
 
 ### Testing Conventions
 
-- React packages (ui, templates): jsdom environment, co-located test files (`component.test.tsx`).
+- React packages (ui): jsdom environment, co-located test files (`component.test.tsx`).
 - Services/utils: node environment, tests in `__tests__/` directories.
 - Web app: uses `next/jest` config (`jest.config.cjs`), jsdom environment.
 - `ky` is mocked in `packages/services/__mocks__/ky.ts` (ESM-only module).

@@ -22,8 +22,5 @@
     "types.d.ts",
     "instrumentation.js"
   ],
-  "exclude": [
-    "node_modules",
-    "app/(payload)/admin/importMap.js"
-  ]
+  "exclude": ["node_modules", "app/(payload)/admin/importMap.js"]
 }

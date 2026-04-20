@@ -1,13 +1,49 @@
-import { BasePayload } from 'payload'
+import { BasePayload } from 'payload';
 
 type Translation = {
-  key: string
-  namespace: 'common' | 'HomePage' | 'auth' | 'navigation' | 'footer' | 'forms' | 'errors' | 'success' | 'validation'
-  description: string
+  key: string;
+  namespace:
+    | 'common'
+    | 'HomePage'
+    | 'auth'
+    | 'navigation'
+    | 'footer'
+    | 'forms'
+    | 'errors'
+    | 'success'
+    | 'validation'
+    | 'a11y';
+  description: string;
   translations: {
-    en: string
-  }
-}
+    en: string;
+    da?: string;
+  };
+  tags?: { tag: string }[];
+};
+
+const allyTranslations: Translation[] = [
+  {
+    key: 'a11y.navigation.desktop',
+    description: 'Aria label for the desktop menu',
+    namespace: 'a11y',
+    translations: { en: 'Main menu', da: 'Hoved menuen' },
+    tags: [{ tag: 'navigation' }, { tag: 'a11y' }],
+  },
+  {
+    key: 'a11y.header.tidebound',
+    description: 'Aria label for the tidebound link',
+    namespace: 'a11y',
+    translations: { en: 'Tidebound home' },
+    tags: [{ tag: 'navigation' }, { tag: 'a11y' }],
+  },
+  {
+    key: 'a11y.toast.dismiss',
+    description: 'Aria label for the toast dismiss btn',
+    namespace: 'a11y',
+    translations: { en: 'Dismiss notification' },
+    tags: [{ tag: 'navigation' }, { tag: 'a11y' }],
+  },
+];
 
 const homePageTranslations: Translation[] = [
   {
@@ -22,24 +58,24 @@ const homePageTranslations: Translation[] = [
     namespace: 'HomePage',
     translations: { en: 'Your content management solution' },
   },
-]
+];
 
-const seedTranslations: Translation[] = [...homePageTranslations]
+const seedTranslations: Translation[] = [...homePageTranslations, ...allyTranslations];
 
 export const initTranslations = async (payload: BasePayload) => {
   const existingTranslations = await payload.find({
     collection: 'translations',
     limit: 1,
-  })
+  });
 
   if (existingTranslations.docs.length > 0) {
-    return
+    return;
   }
 
   for (const translation of seedTranslations) {
     await payload.create({
       collection: 'translations',
       data: { ...translation, _status: 'published' },
-    })
+    });
   }
-}
+};

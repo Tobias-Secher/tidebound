@@ -100,6 +100,10 @@ export const Translations: CollectionConfig = {
           label: 'Validation',
           value: 'validation',
         },
+        {
+          label: 'A11y',
+          value: 'a11y',
+        },
       ],
     },
     {

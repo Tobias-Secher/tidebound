@@ -1,89 +1,46 @@
+import type { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
 import { getPage } from '@repo/services';
-// import type { Page } from "@repo/api-types";
+import { Modules } from '@/app/(frontend)/_components/modules';
+import type { Locale } from '@/i18n';
+import styles from './page.module.css';
 
 type PageProps = {
-  params: Promise<{ slug: string[] }>;
+  params: Promise<{ locale: string; slug: string[] }>;
 };
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  setRequestLocale(locale as Locale);
+
+  const page = await getPage({ slug: slug.join('/') });
+  if (!page) return {};
+
+  return {
+    title: page.meta?.title ?? page.title,
+    description: page.meta?.description ?? undefined,
+  };
+}
+
 export default async function CatchAllPage({ params }: PageProps) {
-  const resolvedParams = await params;
-  const slug = resolvedParams.slug.join('/');
+  const { locale, slug } = await params;
+  setRequestLocale(locale as Locale);
 
-  let page = await getPage({ slug });
-  let error = false;
+  const page = await getPage({ slug: slug.join('/') });
 
-  // try {
-  //   page = await getPage({ slug });
-  // } catch (e) {
-  //   error = true;
-  // }
-
-  console.log('**page: ', page);
-
-  if (error || !page) {
+  if (!page) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-4">Page Not Found</h1>
+      <div className={styles.container}>
+        <h1 className={styles.emptyTitle}>Page Not Found</h1>
         <p>The page you&apos;re looking for doesn&apos;t exist.</p>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-6">{page.title}</h1>
-
-      <div className="space-y-8">
-        {page.modules?.map((module: any, index: number) => {
-          switch (module.blockType) {
-            case 'hero':
-              return (
-                <div key={index} className="hero relative bg-gray-100 p-12 rounded-lg">
-                  <h2 className="text-3xl font-bold mb-2">{module.heading}</h2>
-                  {module.subheading && (
-                    <p className="text-xl text-gray-600">{module.subheading}</p>
-                  )}
-                </div>
-              );
-
-            case 'content':
-              return (
-                <div key={index} className="prose max-w-none">
-                  <div dangerouslySetInnerHTML={{ __html: module.richText }} />
-                </div>
-              );
-
-            case 'imageBlock':
-              return (
-                <div key={index} className="image-block">
-                  {module.image && (
-                    <div>
-                      <img
-                        src={module.image.url}
-                        alt={module.caption || ''}
-                        className="w-full rounded-lg"
-                      />
-                      {module.caption && (
-                        <p className="text-sm text-gray-600 mt-2">{module.caption}</p>
-                      )}
-                    </div>
-                  )}
-                </div>
-              );
-
-            case 'twoColumn':
-              return (
-                <div key={index} className="grid md:grid-cols-2 gap-8">
-                  <div className="prose" dangerouslySetInnerHTML={{ __html: module.leftColumn }} />
-                  <div className="prose" dangerouslySetInnerHTML={{ __html: module.rightColumn }} />
-                </div>
-              );
-
-            default:
-              return null;
-          }
-        })}
-      </div>
+    <div className={styles.container}>
+      <h1 className={styles.title}>{page.title}</h1>
+      <Modules modules={page.modules} />
     </div>
   );
 }

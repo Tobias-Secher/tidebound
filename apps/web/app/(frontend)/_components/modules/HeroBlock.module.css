@@ -1,0 +1,18 @@
+.hero {
+  position: relative;
+  padding: 3rem;
+  background: var(--stroke-light, #f3f4f6);
+  border-radius: 0.5rem;
+}
+
+.heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.subheading {
+  font-size: 1.25rem;
+  margin: 0;
+  opacity: 0.7;
+}

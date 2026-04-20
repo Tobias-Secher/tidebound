@@ -1,12 +1,12 @@
 import createMiddleware from 'next-intl/middleware';
-import { locales, defaultLocale } from '@repo/i18n';
+import { defaultLocale, locales } from './i18n/locales';
 
 export default createMiddleware({
   // A list of all locales that are supported
-  locales,
+  locales: locales,
 
   // Used when no locale matches
-  defaultLocale,
+  defaultLocale: defaultLocale,
 
   // Always redirect to a locale-prefixed path
   localePrefix: 'always',

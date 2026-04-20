@@ -1,10 +1,10 @@
-import Image, { type ImageProps } from "next/image";
-import { ClientComponent } from "../../clientComponent";
-import styles from "./page.module.css";
-import { isMswEnabled } from "@repo/utils";
-import { getTranslations, setRequestLocale } from "@repo/i18n";
+import Image, { type ImageProps } from 'next/image';
+import { ClientComponent } from '../../clientComponent';
+import styles from './page.module.css';
+import { isMswEnabled } from '@repo/utils';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
-type ThemeImageProps = Omit<ImageProps, "src"> & {
+type ThemeImageProps = Omit<ImageProps, 'src'> & {
   srcLight: string;
   srcDark: string;
 };
@@ -25,22 +25,20 @@ const ThemeImage = (props: ThemeImageProps) => {
 };
 
 export default async function Home({ params }: PageProps) {
-  const user = await fetch("https://api.github.com/users/tobias-secher").then(
-    (res) => res.json(),
-  );
+  const user = await fetch('https://api.github.com/users/tobias-secher').then((res) => res.json());
 
-  const mswStatus = isMswEnabled ? "MSW is enabled" : "MSW is disabled";
+  const mswStatus = isMswEnabled ? 'MSW is enabled' : 'MSW is disabled';
 
   const { locale } = await params;
   setRequestLocale(locale as any);
 
-  const t = await getTranslations("HomePage");
+  const t = await getTranslations('HomePage');
 
   return (
     <div className={styles.page}>
-      <pre>{user["name"]}</pre>
-      <pre>{t("title")}</pre>
-      <pre>{t("subtitle")}</pre>
+      <pre>{user['name']}</pre>
+      <pre>{t('title')}</pre>
+      <pre>{t('subtitle')}</pre>
       <pre>{mswStatus}</pre>
       <ClientComponent />
     </div>

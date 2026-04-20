@@ -20,10 +20,8 @@
     "next.config.js",
     ".next/types/**/*.ts",
     "types.d.ts",
-    "instrumentation.js"
+    "instrumentation.js",
+    "i18n.d.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "app/(payload)/admin/importMap.js"
-  ]
+  "exclude": ["node_modules", "app/(payload)/admin/importMap.js"]
 }

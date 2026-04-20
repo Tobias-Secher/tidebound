@@ -13,7 +13,8 @@
     "test:watch": "jest --watch --passWithNoTests --maxWorkers=25%",
     "test:coverage": "jest --coverage --passWithNoTests --maxWorkers=50%",
     "env-pull": "vercel env pull --environment=development",
-    "generate:importmap": "payload generate:importmap"
+    "generate:importmap": "payload generate:importmap",
+    "generate:translations": "tsx --env-file=.env.local ./i18n/scripts/generateTypes.ts"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.69.0",
@@ -21,7 +22,6 @@
     "@payloadcms/next": "^3.69.0",
     "@payloadcms/richtext-lexical": "^3.69.0",
     "@payloadcms/ui": "3.69.0",
-    "@repo/i18n": "workspace:*",
     "@repo/mocks": "workspace:*",
     "@repo/services": "workspace:*",
     "@repo/ui": "workspace:*",
@@ -52,7 +52,8 @@
     "jest": "catalog:",
     "jest-environment-jsdom": "catalog:",
     "msw": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "tsx": "catalog:"
   },
   "msw": {
     "workerDirectory": [

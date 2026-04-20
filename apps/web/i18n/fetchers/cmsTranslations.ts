@@ -1,6 +1,6 @@
-import type { Locale } from '../index';
+import { Locale } from '../locales';
+import { CMS_URL } from '../utils/constants';
 import { flatToNested } from '../utils/transformTranslations';
-import { CMS_URL } from '../config';
 import { CACHE_TAGS } from '@repo/api-types';
 
 /**

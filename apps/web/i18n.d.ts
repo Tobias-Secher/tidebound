@@ -1,5 +1,5 @@
-import messages from "../messages/en.json";
-import { locales } from "./index";
+import messages from "./i18n/messages/en.json";
+import { locales } from "./i18n/locales";
 
 type Messages = typeof messages;
 type Locale = (typeof locales)[number];

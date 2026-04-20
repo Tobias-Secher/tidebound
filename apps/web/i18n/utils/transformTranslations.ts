@@ -1,5 +1,5 @@
-import type { Locale } from "../index";
-import type { Translation } from "@repo/api-types";
+import { Locale } from '@/i18n';
+import type { Translation } from '@repo/api-types';
 
 export type NestedMessages = Record<string, any>;
 
@@ -14,10 +14,7 @@ export type NestedMessages = Record<string, any>;
  * @param locale - The locale to extract translations for
  * @returns Nested object structure compatible with next-intl
  */
-export function flatToNested(
-  translations: Translation[],
-  locale: Locale,
-): NestedMessages {
+export function flatToNested(translations: Translation[], locale: Locale): NestedMessages {
   const result: NestedMessages = {};
 
   for (const doc of translations) {
@@ -27,11 +24,9 @@ export function flatToNested(
     const value = translations[locale] || doc.translations.en || doc.key;
 
     // If key doesn't include namespace, prepend it
-    const fullKey = doc.key.includes(".")
-      ? doc.key
-      : `${doc.namespace}.${doc.key}`;
+    const fullKey = doc.key.includes('.') ? doc.key : `${doc.namespace}.${doc.key}`;
 
-    const keys = fullKey.split(".");
+    const keys = fullKey.split('.');
     let current: any = result;
 
     // Navigate/create nested structure

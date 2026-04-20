@@ -3,15 +3,13 @@ import localFont from 'next/font/local';
 import './globals.css';
 import { MswProvider } from '../../../providers/MswProvider';
 import { ReactQueryProvider } from '../../../providers/ReactQueryProvider';
-import {
-  NextIntlClientProvider,
-  getMessages,
-  locales,
-  setRequestLocale,
-  type Locale,
-} from '@repo/i18n';
+
 import { notFound } from 'next/navigation';
 import { Header } from '@/features/templates';
+import { locales } from '@/i18n/locales';
+import { Locale } from '@/i18n';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
 
 type Props = {
   children: React.ReactNode;

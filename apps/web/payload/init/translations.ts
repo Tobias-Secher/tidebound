@@ -39,7 +39,7 @@ export const initTranslations = async (payload: BasePayload) => {
   for (const translation of seedTranslations) {
     await payload.create({
       collection: 'translations',
-      data: translation,
+      data: { ...translation, _status: 'published' },
     })
   }
 }

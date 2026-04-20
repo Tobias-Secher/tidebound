@@ -1,8 +1,8 @@
 import type { CollectionConfig } from 'payload';
 import { revalidateTag } from 'next/cache';
-import { defaultLocale, locales } from '@repo/i18n';
 import { collectionNames } from '../collectionNames';
 import { CACHE_TAGS } from '@repo/api-types';
+import { defaultLocale, locales } from '@/i18n/locales';
 
 export const Translations: CollectionConfig = {
   slug: collectionNames.translations,

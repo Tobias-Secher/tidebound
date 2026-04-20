@@ -49,7 +49,6 @@ pnpm format                       # Prettier
 | `@repo/ui`                | Shared presentational components. Exported via `@repo/ui/component-name`.                                                                          |
 | `@repo/services`          | TanStack Query hooks + Ky HTTP client for API calls.                                                                                               |
 | `@repo/mocks`             | MSW handlers. Exports `server` and `browser` entry points.                                                                                         |
-| `@repo/i18n`              | next-intl integration. CMS is the source of truth for translations.                                                                                |
 | `@repo/api-types`         | Payload-generated TypeScript types (`payload-types.ts`). Build with `pnpm --filter @repo/api-types build` before other packages that depend on it. |
 | `@repo/utils`             | Pure utility functions.                                                                                                                            |
 | `@repo/styles`            | CSS variables, fonts, and global styles.                                                                                                           |

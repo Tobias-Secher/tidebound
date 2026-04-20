@@ -5,7 +5,7 @@ import { MobileNav } from './components/MobileNav';
 import { ToastBar } from './components/ToastBar';
 import { getHeader } from '@repo/services';
 import { resolveNavItems, resolveToast } from './types';
-import type { Locale } from '@repo/i18n';
+import { Locale } from '@/i18n';
 
 type HeaderProps = {
   locale: Locale;
@@ -19,21 +19,13 @@ export async function Header({ locale }: HeaderProps) {
   return (
     <header className={styles.container}>
       {toast && (
-        <ToastBar
-          message={toast.message}
-          linkUrl={toast.linkUrl}
-          linkText={toast.linkText}
-        />
+        <ToastBar message={toast.message} linkUrl={toast.linkUrl} linkText={toast.linkText} />
       )}
       <nav className={styles.nav} aria-label="Main">
         <div className={styles.desktopNav}>
           <Links items={navItems} />
         </div>
-        <Link
-          href={`/${locale}`}
-          className={styles.logo}
-          aria-label="Tidebound home"
-        >
+        <Link href={`/${locale}`} className={styles.logo} aria-label="Tidebound home">
           TIDEBOUND
         </Link>
         <div className={styles.rightSlot}>

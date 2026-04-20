@@ -1,4 +1,4 @@
-import { Locale } from '@/i18n';
+import type { Locale } from '../locales';
 import type { Translation } from '@repo/api-types';
 
 export type NestedMessages = Record<string, any>;

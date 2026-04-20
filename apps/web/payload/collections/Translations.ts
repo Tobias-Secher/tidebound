@@ -2,7 +2,7 @@ import type { CollectionConfig } from 'payload';
 import { revalidateTag } from 'next/cache';
 import { collectionNames } from '../collectionNames';
 import { CACHE_TAGS } from '@repo/api-types';
-import { defaultLocale, locales } from '@/i18n/locales';
+import { defaultLocale, locales } from '@/i18n';
 
 export const Translations: CollectionConfig = {
   slug: collectionNames.translations,

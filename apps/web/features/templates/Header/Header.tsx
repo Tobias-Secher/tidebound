@@ -5,7 +5,7 @@ import { MobileNav } from './components/MobileNav';
 import { ToastBar } from './components/ToastBar';
 import { getHeader } from '@repo/services';
 import { resolveNavItems, resolveToast } from './types';
-import { Locale } from '@/i18n';
+import type { Locale } from '@/i18n';
 
 type HeaderProps = {
   locale: Locale;

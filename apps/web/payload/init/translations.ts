@@ -16,6 +16,7 @@ type Translation = {
   description: string;
   translations: {
     en: string;
+    da?: string;
   };
   tags?: { tag: string }[];
 };
@@ -25,7 +26,7 @@ const allyTranslations: Translation[] = [
     key: 'a11y.navigation.desktop',
     description: 'Aria label for the desktop menu',
     namespace: 'a11y',
-    translations: { en: 'Main menu' },
+    translations: { en: 'Main menu', da: 'Hoved menuen' },
     tags: [{ tag: 'navigation' }, { tag: 'a11y' }],
   },
   {

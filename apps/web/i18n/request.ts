@@ -1,12 +1,12 @@
+import { hasLocale } from 'next-intl';
 import { getRequestConfig } from 'next-intl/server';
-import { defaultLocale, Locale, locales } from './locales';
 import { fetchCMSTranslations } from './fetchers/cmsTranslations';
+import { defaultLocale, Locale } from './locales';
+import { routing } from './routing';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;
-  const locale: Locale = locales.includes(requested as Locale)
-    ? (requested as Locale)
-    : defaultLocale;
+  const locale: Locale = hasLocale(routing.locales, requested) ? requested : defaultLocale;
 
   // Only use CMS translations
   const cmsMessages = await fetchCMSTranslations(locale);

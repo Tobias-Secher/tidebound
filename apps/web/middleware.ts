@@ -1,20 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
-import { defaultLocale, locales } from '@/i18n';
+import { routing } from './i18n/routing';
 
-export default createMiddleware({
-  // A list of all locales that are supported
-  locales: locales,
-
-  // Used when no locale matches
-  defaultLocale: defaultLocale,
-
-  // Always redirect to a locale-prefixed path
-  localePrefix: 'always',
-
-  // Disable locale detection from Accept-Language header
-  // Set to true if you want automatic locale detection based on user's browser
-  localeDetection: false,
-});
+export default createMiddleware(routing);
 
 export const config = {
   // Match all pathnames except for

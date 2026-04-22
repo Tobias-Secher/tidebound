@@ -2,4 +2,9 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  /* container: moduleContainer / inline-style; */
+
+  @media (--md) {
+    background-color: red;
+  }
 }

@@ -18,16 +18,17 @@
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.69.0",
-    "@repo/styles": "workspace:*",
     "@payloadcms/next": "^3.69.0",
     "@payloadcms/richtext-lexical": "^3.69.0",
     "@payloadcms/ui": "3.69.0",
+    "@repo/api-types": "workspace:*",
     "@repo/mocks": "workspace:*",
     "@repo/services": "workspace:*",
+    "@repo/styles": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
-    "@repo/api-types": "workspace:*",
     "@tanstack/react-query": "catalog:",
+    "clsx": "catalog:",
     "graphql": "^16.8.1",
     "next": "catalog:",
     "next-intl": "catalog:",
@@ -35,7 +36,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "sharp": "catalog:",
-    "clsx": "catalog:"
+    "storybook": "catalog:"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -52,8 +53,10 @@
     "jest": "catalog:",
     "jest-environment-jsdom": "catalog:",
     "msw": "catalog:",
+    "postcss-custom-media": "^12.0.1",
+    "tsx": "catalog:",
     "typescript": "catalog:",
-    "tsx": "catalog:"
+    "@repo/config": "workspace:*"
   },
   "msw": {
     "workerDirectory": [

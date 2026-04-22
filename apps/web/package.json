@@ -39,6 +39,7 @@
     "storybook": "catalog:"
   },
   "devDependencies": {
+    "@repo/config": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/jest-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
@@ -53,10 +54,8 @@
     "jest": "catalog:",
     "jest-environment-jsdom": "catalog:",
     "msw": "catalog:",
-    "postcss-custom-media": "^12.0.1",
     "tsx": "catalog:",
-    "typescript": "catalog:",
-    "@repo/config": "workspace:*"
+    "typescript": "catalog:"
   },
   "msw": {
     "workerDirectory": [

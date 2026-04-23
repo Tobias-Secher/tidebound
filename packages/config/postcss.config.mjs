@@ -1,13 +1,15 @@
-const stylesFolder = `${__dirname}/../styles/src/css`;
-const customMediaImports = [`${stylesFolder}/media.css`];
-const mixinsFiles = `${stylesFolder}/**/*mixins.css`;
+const stylesBase = './node_modules/@repo/styles/src/css';
 
-module.exports = {
+export default {
   plugins: {
-    'postcss-mixins': { mixinsFiles },
+    'postcss-mixins': {
+      mixinsFiles: `${stylesBase}/**/*mixins.css`,
+    },
+    '@csstools/postcss-global-data': {
+      files: [`${stylesBase}/media.css`],
+    },
     'postcss-preset-env': {
       stage: 3,
-      importFrom: customMediaImports,
       features: {
         'custom-media-queries': true,
         'custom-properties': false,

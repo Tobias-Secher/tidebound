@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --webpack --port 3000",
+    "dev": "next dev --port 3000",
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint --max-warnings 0",
@@ -17,10 +17,10 @@
     "generate:translations": "tsx --env-file=.env.local ./i18n/scripts/generateTypes.ts"
   },
   "dependencies": {
-    "@payloadcms/db-mongodb": "^3.69.0",
-    "@payloadcms/next": "^3.69.0",
-    "@payloadcms/richtext-lexical": "^3.69.0",
-    "@payloadcms/ui": "3.69.0",
+    "@payloadcms/db-mongodb": "^3.84.0",
+    "@payloadcms/next": "^3.84.0",
+    "@payloadcms/richtext-lexical": "^3.84.0",
+    "@payloadcms/ui": "^3.84.0",
     "@repo/api-types": "workspace:*",
     "@repo/mocks": "workspace:*",
     "@repo/services": "workspace:*",
@@ -32,7 +32,7 @@
     "graphql": "^16.8.1",
     "next": "catalog:",
     "next-intl": "catalog:",
-    "payload": "^3.69.0",
+    "payload": "^3.84.0",
     "react": "catalog:",
     "react-dom": "catalog:",
     "sharp": "catalog:",

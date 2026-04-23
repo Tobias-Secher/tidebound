@@ -9,6 +9,7 @@ import { Header } from '@/features/templates';
 import { locales, type Locale } from '@/i18n';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { NextIntlClientProvider } from 'next-intl';
+import { Surface } from '@repo/ui';
 
 type Props = {
   children: React.ReactNode;
@@ -55,7 +56,10 @@ export default async function RootLayout({ children, params }: Readonly<Props>) 
           <ReactQueryProvider>
             <NextIntlClientProvider messages={messages}>
               <Header locale={typedLocale} />
-              {children}
+
+              <main>
+                <Surface>{children}</Surface>
+              </main>
             </NextIntlClientProvider>
           </ReactQueryProvider>
         </MswProvider>

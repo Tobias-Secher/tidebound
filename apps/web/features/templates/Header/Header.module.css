@@ -7,11 +7,15 @@
 }
 
 .nav {
-  padding: 0 var(--spacing-40, 40px);
+  padding: 0 var(--sp-5);
   border-bottom: 1px solid var(--stroke-light, #eee);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
+
+  @media (--md) {
+    padding-inline: var(--sp-10);
+  }
 }
 
 .logo {

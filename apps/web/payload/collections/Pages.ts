@@ -1,5 +1,6 @@
 import { revalidateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
+import { blocks } from './blocks';
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -42,67 +43,7 @@ export const Pages: CollectionConfig = {
       name: 'modules',
       type: 'blocks',
       required: true,
-      blocks: [
-        {
-          slug: 'hero',
-          fields: [
-            {
-              name: 'heading',
-              type: 'text',
-              required: true,
-            },
-            {
-              name: 'subheading',
-              type: 'text',
-            },
-            {
-              name: 'backgroundImage',
-              type: 'upload',
-              relationTo: 'media',
-            },
-          ],
-        },
-        {
-          slug: 'content',
-          fields: [
-            {
-              name: 'richText',
-              type: 'richText',
-              required: true,
-            },
-          ],
-        },
-        {
-          slug: 'imageBlock',
-          fields: [
-            {
-              name: 'image',
-              type: 'upload',
-              relationTo: 'media',
-              required: true,
-            },
-            {
-              name: 'caption',
-              type: 'text',
-            },
-          ],
-        },
-        {
-          slug: 'twoColumn',
-          fields: [
-            {
-              name: 'leftColumn',
-              type: 'richText',
-              required: true,
-            },
-            {
-              name: 'rightColumn',
-              type: 'richText',
-              required: true,
-            },
-          ],
-        },
-      ],
+      blocks,
     },
     {
       name: 'meta',

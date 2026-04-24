@@ -511,6 +511,9 @@ importers:
 
   packages/ui:
     dependencies:
+      clsx:
+        specifier: 'catalog:'
+        version: 2.1.1
       react:
         specifier: 'catalog:'
         version: 19.2.3

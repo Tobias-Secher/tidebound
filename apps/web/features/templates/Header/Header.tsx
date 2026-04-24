@@ -7,6 +7,7 @@ import { getHeader } from '@repo/services';
 import { resolveNavItems, resolveToast } from './types';
 import type { Locale } from '@/i18n';
 import { Link } from '@/i18n/navigation';
+import { Surface } from '@repo/ui';
 
 type HeaderProps = {
   locale: Locale;
@@ -18,7 +19,7 @@ export async function Header({ locale }: HeaderProps) {
   const toast = resolveToast(headerData?.toast);
 
   return (
-    <header className={styles.container}>
+    <Surface as="header" className={styles.container}>
       {toast && (
         <ToastBar message={toast.message} linkUrl={toast.linkUrl} linkText={toast.linkText} />
       )}
@@ -33,6 +34,6 @@ export async function Header({ locale }: HeaderProps) {
           <MobileNav items={navItems} />
         </div>
       </nav>
-    </header>
+    </Surface>
   );
 }

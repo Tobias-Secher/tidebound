@@ -1,0 +1,8 @@
+.surface {
+  container: surface / inline-size;
+  padding: 0 var(--sp-5);
+
+  @media (--md) {
+    padding-inline: var(--sp-10);
+  }
+}

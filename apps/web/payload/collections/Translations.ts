@@ -1,7 +1,6 @@
 import type { CollectionConfig } from 'payload';
 import { revalidateTag } from 'next/cache';
 import { collectionNames } from '../collectionNames';
-import { CACHE_TAGS } from '@repo/api-types';
 import { defaultLocale, locales } from '@/i18n';
 
 export const Translations: CollectionConfig = {
@@ -22,7 +21,7 @@ export const Translations: CollectionConfig = {
       async ({ doc, req }) => {
         if (doc._status === 'published') {
           try {
-            revalidateTag(CACHE_TAGS.translation.all, 'max');
+            revalidateTag('translations', 'max');
             req.payload.logger.info(`Translation cache revalidated for key: ${doc.key}`);
           } catch (error) {
             req.payload.logger.error(`Failed to revalidate translations cache: ${error}`);

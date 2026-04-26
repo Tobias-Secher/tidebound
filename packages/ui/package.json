@@ -31,6 +31,8 @@
   "dependencies": {
     "react": "catalog:",
     "react-dom": "catalog:",
-    "clsx": "catalog:"
+    "clsx": "catalog:",
+    "next": "catalog:",
+    "@repo/api-types": "workspace:*"
   }
 }

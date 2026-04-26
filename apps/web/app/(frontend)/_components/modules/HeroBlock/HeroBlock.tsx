@@ -1,13 +1,19 @@
 import type { Page } from '@repo/api-types';
 import styles from './HeroBlock.module.css';
+import { Image } from '@repo/ui';
 
-type HeroModule = Extract<Page['modules'][number], { blockType: 'hero' }>;
+type HeroModule = Omit<
+  Extract<Page['modules'][number], { blockType: 'hero' }>,
+  'blockName' | 'blockType' | 'id'
+>;
 
-export function HeroBlock({ heading, subheading }: HeroModule) {
+export function HeroBlock({ heading, subheading, moduleSpacing, backgroundImage }: HeroModule) {
+  const media = typeof backgroundImage === 'object' ? backgroundImage : null;
   return (
     <div className={styles.hero}>
-      <h2 className={styles.heading}>{heading}</h2>
-      {subheading && <p className={styles.subheading}>{subheading}</p>}
+      <Image desktop={media} alt={heading} />
+      {/* <h2 className={styles.heading}>{heading}</h2>
+      {subheading && <p className={styles.subheading}>{subheading}</p>} */}
     </div>
   );
 }

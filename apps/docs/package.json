@@ -21,9 +21,8 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@storybook/addon-webpack5-compiler-swc": "catalog:",
+    "@storybook/nextjs": "catalog:",
     "@storybook/react": "catalog:",
-    "@storybook/react-webpack5": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",

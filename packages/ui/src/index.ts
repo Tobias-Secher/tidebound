@@ -1,1 +1,1 @@
-export { Surface } from './components';
+export { Surface, Image } from './components';

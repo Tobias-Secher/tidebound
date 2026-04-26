@@ -98,9 +98,10 @@ export interface Config {
     header: HeaderSelect<false> | HeaderSelect<true>;
   };
   locale: null;
-  user: User & {
-    collection: 'users';
+  widgets: {
+    collections: CollectionsWidget;
   };
+  user: User;
   jobs: {
     tasks: unknown;
     workflows: unknown;
@@ -147,6 +148,7 @@ export interface User {
       }[]
     | null;
   password?: string | null;
+  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -183,6 +185,7 @@ export interface Page {
         heading: string;
         subheading?: string | null;
         backgroundImage?: (string | null) | Media;
+        moduleSpacing: 'small' | 'medium' | 'large';
         id?: string | null;
         blockName?: string | null;
         blockType: 'hero';
@@ -203,6 +206,7 @@ export interface Page {
           };
           [k: string]: unknown;
         };
+        moduleSpacing: 'small' | 'medium' | 'large';
         id?: string | null;
         blockName?: string | null;
         blockType: 'content';
@@ -210,6 +214,7 @@ export interface Page {
     | {
         image: string | Media;
         caption?: string | null;
+        moduleSpacing: 'small' | 'medium' | 'large';
         id?: string | null;
         blockName?: string | null;
         blockType: 'imageBlock';
@@ -245,6 +250,7 @@ export interface Page {
           };
           [k: string]: unknown;
         };
+        moduleSpacing: 'small' | 'medium' | 'large';
         id?: string | null;
         blockName?: string | null;
         blockType: 'twoColumn';
@@ -270,7 +276,17 @@ export interface Translation {
   /**
    * Namespace/group for organizing translations
    */
-  namespace: 'common' | 'HomePage' | 'auth' | 'navigation' | 'footer' | 'forms' | 'errors' | 'success' | 'validation';
+  namespace:
+    | 'common'
+    | 'HomePage'
+    | 'auth'
+    | 'navigation'
+    | 'footer'
+    | 'forms'
+    | 'errors'
+    | 'success'
+    | 'validation'
+    | 'a11y';
   /**
    * Context or usage notes for translators
    */
@@ -436,6 +452,7 @@ export interface PagesSelect<T extends boolean = true> {
               heading?: T;
               subheading?: T;
               backgroundImage?: T;
+              moduleSpacing?: T;
               id?: T;
               blockName?: T;
             };
@@ -443,6 +460,7 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               richText?: T;
+              moduleSpacing?: T;
               id?: T;
               blockName?: T;
             };
@@ -451,6 +469,7 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               image?: T;
               caption?: T;
+              moduleSpacing?: T;
               id?: T;
               blockName?: T;
             };
@@ -459,6 +478,7 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               leftColumn?: T;
               rightColumn?: T;
+              moduleSpacing?: T;
               id?: T;
               blockName?: T;
             };
@@ -550,6 +570,9 @@ export interface Header {
      * Show the toast banner
      */
     enabled?: boolean | null;
+    /**
+     * The message to display in the toast banner
+     */
     message?: string | null;
     /**
      * Optional link URL
@@ -651,6 +674,16 @@ export interface HeaderSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_widget".
+ */
+export interface CollectionsWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

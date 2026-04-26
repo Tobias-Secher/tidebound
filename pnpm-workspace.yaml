@@ -44,10 +44,9 @@ catalog:
   'jest-environment-jsdom': '^30.2.0'
 
   # Storybook
-  'storybook': '^10.1.11'
-  '@storybook/react': '^10.1.11'
-  '@storybook/react-webpack5': '^10.1.11'
-  '@storybook/addon-webpack5-compiler-swc': '^4.0.2'
+  'storybook': '^10.3.5'
+  '@storybook/react': '^10.3.5'
+  '@storybook/nextjs': '^10.3.5'
   # '@storybook/addon-essentials': '^10.1.11'
   # '@storybook/addon-interactions': '^10.1.11'
   # '@storybook/addon-links': '^10.1.11'

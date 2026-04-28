@@ -14,6 +14,7 @@
   "dependencies": {
     "@repo/styles": "workspace:*",
     "@repo/ui": "workspace:*",
+    "@repo/api-types": "workspace:*",
     "next": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:"

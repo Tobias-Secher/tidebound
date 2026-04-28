@@ -1,6 +1,7 @@
 import { Image } from '@repo/ui';
 import type { Media } from '@repo/api-types';
 import type { Meta, StoryObj } from '@storybook/react';
+import { SyntheticEvent } from 'react';
 
 const desktopMedia: Media = {
   id: 'desktop',
@@ -71,9 +72,9 @@ export const WithError: Story = {
       id: 'broken',
       url: 'https://example.invalid/missing.jpg',
     },
-    onImageLoaderError: () => {
+    onImageLoaderError: (e: SyntheticEvent<HTMLImageElement, Event>) => {
       // eslint-disable-next-line no-console
-      console.warn('Image failed to load');
+      console.warn('Image failed to load', { e });
     },
   },
 };

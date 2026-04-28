@@ -14,6 +14,7 @@ function getAbsolutePath(value: string): string {
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  staticDirs: ['../../web/public'],
   framework: {
     name: getAbsolutePath('@storybook/nextjs') as '@storybook/nextjs',
     options: {

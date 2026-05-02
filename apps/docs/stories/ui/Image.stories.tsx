@@ -59,12 +59,6 @@ export const WithAltOverride: Story = {
   },
 };
 
-export const WithDimensionOverride: Story = {
-  args: {
-    desktop: { media: desktopMedia, width: 300, height: 200 },
-  },
-};
-
 export const WithError: Story = {
   args: {
     desktop: {

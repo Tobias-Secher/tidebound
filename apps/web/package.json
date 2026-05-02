@@ -37,7 +37,8 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "sharp": "catalog:",
-    "storybook": "catalog:"
+    "storybook": "catalog:",
+    "@storybook/react": "catalog:"
   },
   "devDependencies": {
     "@repo/config": "workspace:*",

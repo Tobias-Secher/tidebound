@@ -7,15 +7,10 @@ import type { Media } from '@repo/api-types';
 import styles from './Image.module.css';
 import fallbackSvg from './fallback.svg';
 
-type ImageSource = {
-  media: Media;
-  width?: number;
-  height?: number;
-};
 
 type Props = {
-  desktop: ImageSource | Media | null | undefined;
-  mobile?: ImageSource | Media | null | undefined;
+  desktop:  Media | null | undefined;
+  mobile?:  Media | null | undefined;
   alt?: string;
   className?: string;
   /** Default: "(min-width: 1000px)" */
@@ -24,41 +19,6 @@ type Props = {
 };
 
 const DEFAULT_BREAKPOINT = '(min-width: 1000px)';
-
-type Resolved = {
-  src: string;
-  width: number;
-  height: number;
-};
-
-function isImageSource(input: ImageSource | Media): input is ImageSource {
-  return 'media' in input;
-}
-
-function getMedia(input: ImageSource | Media): Media {
-  return isImageSource(input) ? input.media : input;
-}
-
-function resolve(input: ImageSource | Media): Resolved {
-  const source: ImageSource = isImageSource(input) ? input : { media: input };
-  const { media, width, height } = source;
-
-  if (!media.url) {
-    throw new Error(`Image: media (id=${media.id}) is missing a url`);
-  }
-
-  const resolvedWidth = width ?? media.width;
-  if (resolvedWidth == null) {
-    throw new Error(`Image: media (id=${media.id}) is missing width and no override was provided`);
-  }
-
-  const resolvedHeight = height ?? media.height;
-  if (resolvedHeight == null) {
-    throw new Error(`Image: media (id=${media.id}) is missing height and no override was provided`);
-  }
-
-  return { src: media.url, width: resolvedWidth, height: resolvedHeight };
-}
 
 export function Image({
   desktop,
@@ -71,9 +31,6 @@ export function Image({
   const [error, setError] = useState(false);
   if (desktop == null) return null;
 
-  const desktopResolved = resolve(desktop);
-  const finalAlt = alt ?? getMedia(desktop).alt;
-
   const handleError = (e: SyntheticEvent<HTMLImageElement>) => {
     onImageLoaderError?.(e);
     setError(true);
@@ -82,33 +39,33 @@ export function Image({
   if (mobile == null) {
     return (
       <NextImage
-        src={error ? fallbackSvg : desktopResolved.src}
-        alt={finalAlt}
-        width={desktopResolved.width}
-        height={desktopResolved.height}
+        src={error ? fallbackSvg : desktop.url!}
+        alt={alt ?? ''}
+        width={desktop.width!}
+        height={desktop.height!}
         className={clsx(styles.image, error && styles.fallback, className)}
         onError={handleError}
       />
     );
   }
 
-  const mobileResolved = resolve(mobile);
 
+const finalAlt = alt ?? '';
   const {
     props: { srcSet: desktopSrcSet, src: desktopFallbackSrc },
   } = getImageProps({
-    src: error ? fallbackSvg.src : desktopResolved.src,
+    src: error ? fallbackSvg.src : desktop.url!,
     alt: finalAlt,
-    width: desktopResolved.width,
-    height: desktopResolved.height,
+    width: desktop.width!,
+    height: desktop.height!,
   });
   const {
     props: { srcSet: mobileSrcSet, src: mobileFallbackSrc, ...mobileImgProps },
   } = getImageProps({
-    src: error ? fallbackSvg.src : mobileResolved.src,
+    src: error ? fallbackSvg.src : mobile.url!,
     alt: finalAlt,
-    width: mobileResolved.width,
-    height: mobileResolved.height,
+    width: mobile.width!,
+    height: mobile.height!,
   });
 
   return (
@@ -116,8 +73,8 @@ export function Image({
       <source
         media={breakpoint}
         srcSet={desktopSrcSet ?? desktopFallbackSrc}
-        width={desktopResolved.width}
-        height={desktopResolved.height}
+        width={desktop.width!}
+        height={desktop.height!}
       />
       <img
         {...mobileImgProps}

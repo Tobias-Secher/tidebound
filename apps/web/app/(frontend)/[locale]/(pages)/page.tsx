@@ -29,7 +29,7 @@ export default async function Home({ params }: PageProps) {
   setRequestLocale(locale as Locale);
 
   const page = await getPage({ slug: HOME_SLUG });
-
+  const a = 1;
   if (!page) {
     return (
       <div className={styles.container}>

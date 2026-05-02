@@ -1,22 +1,25 @@
-import { withPayload } from "@payloadcms/next/withPayload";
-import createNextIntlPlugin from "next-intl/plugin";
-import { fileURLToPath } from "url";
-import path from "path";
+import { withPayload } from '@payloadcms/next/withPayload';
+import createNextIntlPlugin from 'next-intl/plugin';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
     API_URL: process.env.API_URL,
   },
+  images: {
+    remotePatterns: [new URL('https://placehold.co/**')],
+  },
   webpack: (config, { isServer, nextRuntime }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@payload-config": path.resolve(__dirname, "./payload/config.ts"),
+      '@payload-config': path.resolve(__dirname, './payload/config.ts'),
     };
 
     // Exclude MSW from webpack bundling (it's only for development/testing)

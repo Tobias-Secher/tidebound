@@ -1,46 +1,47 @@
-import Image, { type ImageProps } from 'next/image';
-import { ClientComponent } from '../../clientComponent';
+import type { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
+import { getPage } from '@repo/services';
+import { Modules } from '@/app/(frontend)/_components/modules';
+import type { Locale } from '@/i18n';
 import styles from './page.module.css';
-import { isMswEnabled } from '@repo/utils';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
 
-type ThemeImageProps = Omit<ImageProps, 'src'> & {
-  srcLight: string;
-  srcDark: string;
-};
+const HOME_SLUG = '/';
 
 type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
-const ThemeImage = (props: ThemeImageProps) => {
-  const { srcLight, srcDark, ...rest } = props;
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale as Locale);
 
-  return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
+  const page = await getPage({ slug: HOME_SLUG });
+  if (!page) return {};
+
+  return {
+    title: page.meta?.title ?? page.title,
+    description: page.meta?.description ?? undefined,
+  };
+}
 
 export default async function Home({ params }: PageProps) {
-  const user = await fetch('https://api.github.com/users/tobias-secher').then((res) => res.json());
-
-  const mswStatus = isMswEnabled ? 'MSW is enabled' : 'MSW is disabled';
-
   const { locale } = await params;
-  setRequestLocale(locale as any);
+  setRequestLocale(locale as Locale);
 
-  const t = await getTranslations('HomePage');
+  const page = await getPage({ slug: HOME_SLUG });
+  const a = 1;
+  if (!page) {
+    return (
+      <div className={styles.container}>
+        <h1 className={styles.emptyTitle}>Page Not Found</h1>
+        <p>The home page has not been configured yet.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className={styles.page}>
-      <pre>{user['name']}</pre>
-      <pre>{t('title')}</pre>
-      <pre>{t('subtitle')}</pre>
-      <pre>{mswStatus}</pre>
-      <ClientComponent />
+    <div className={styles.container}>
+      <Modules modules={page.modules} />
     </div>
   );
 }

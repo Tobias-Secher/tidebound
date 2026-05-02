@@ -13,7 +13,7 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "eslint": "catalog:",
-    "payload": "^3.69.0",
+    "payload": "^3.84.0",
     "typescript": "catalog:"
   }
 }

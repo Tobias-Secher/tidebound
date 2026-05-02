@@ -1,0 +1,7 @@
+.main {
+  padding-inline: var(--sp-5);
+
+  @media (--md) {
+    padding-inline: var(--sp-10);
+  }
+}

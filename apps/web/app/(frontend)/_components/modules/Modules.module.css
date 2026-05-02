@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  container: moduleContainer / inline-size;
+
+  @media (--md) {
+    background-color: red;
+  }
+}

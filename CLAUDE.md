@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 When creating new labels, always add them in the payload init folder for the correct collection
 
+This repo uses css modules, and NOT tailwind
+
 ## Project Overview
 
 Tidebound is a webshop for scuba, diving, and water sport equipment. It's a pnpm + Turborepo monorepo with a Next.js 16 frontend and Payload CMS backend sharing a single app.

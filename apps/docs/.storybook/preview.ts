@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react-webpack5';
+import type { Preview } from '@storybook/nextjs';
 import '@repo/styles/index.css';
 
 const preview: Preview = {

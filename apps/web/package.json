@@ -14,30 +14,34 @@
     "test:coverage": "jest --coverage --passWithNoTests --maxWorkers=50%",
     "env-pull": "vercel env pull --environment=development",
     "generate:importmap": "payload generate:importmap",
+    "generate:types": "payload generate:types",
     "generate:translations": "tsx --env-file=.env.local ./i18n/scripts/generateTypes.ts"
   },
   "dependencies": {
-    "@payloadcms/db-mongodb": "^3.69.0",
-    "@repo/styles": "workspace:*",
-    "@payloadcms/next": "^3.69.0",
-    "@payloadcms/richtext-lexical": "^3.69.0",
-    "@payloadcms/ui": "3.69.0",
+    "@payloadcms/db-mongodb": "^3.84.0",
+    "@payloadcms/next": "^3.84.0",
+    "@payloadcms/richtext-lexical": "^3.84.0",
+    "@payloadcms/ui": "^3.84.0",
+    "@repo/api-types": "workspace:*",
     "@repo/mocks": "workspace:*",
     "@repo/services": "workspace:*",
+    "@repo/styles": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
-    "@repo/api-types": "workspace:*",
     "@tanstack/react-query": "catalog:",
+    "clsx": "catalog:",
     "graphql": "^16.8.1",
     "next": "catalog:",
     "next-intl": "catalog:",
-    "payload": "^3.69.0",
+    "payload": "^3.84.0",
     "react": "catalog:",
     "react-dom": "catalog:",
     "sharp": "catalog:",
-    "clsx": "catalog:"
+    "storybook": "catalog:",
+    "@storybook/react": "catalog:"
   },
   "devDependencies": {
+    "@repo/config": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/jest-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
@@ -52,8 +56,8 @@
     "jest": "catalog:",
     "jest-environment-jsdom": "catalog:",
     "msw": "catalog:",
-    "typescript": "catalog:",
-    "tsx": "catalog:"
+    "tsx": "catalog:",
+    "typescript": "catalog:"
   },
   "msw": {
     "workerDirectory": [

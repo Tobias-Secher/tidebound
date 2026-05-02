@@ -1,0 +1,10 @@
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.fallback {
+  object-fit: contain;
+  background: var(--bg-2);
+  padding: 12%;
+}

@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/nextjs';
 
 import { dirname } from 'path';
 
@@ -13,43 +13,16 @@ function getAbsolutePath(value: string): string {
 }
 
 const config: StorybookConfig = {
-  stories: ['../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: [getAbsolutePath('@storybook/addon-webpack5-compiler-swc')],
-  framework: getAbsolutePath('@storybook/react-webpack5'),
-  webpackFinal: async (config) => {
-    // Remove existing CSS rules
-    config.module!.rules = config.module!.rules!.filter((rule) => {
-      if (rule && typeof rule === 'object' && rule.test instanceof RegExp) {
-        return !rule.test.test('.css');
-      }
-      return true;
-    });
-
-    // Add CSS rules with CSS Modules support
-    config.module!.rules!.push(
-      {
-        test: /\.module\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[name]__[local]--[hash:base64:5]',
-                namedExport: false,
-              },
-            },
-          },
-        ],
-      },
-      {
-        test: /\.css$/,
-        exclude: /\.module\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-    );
-
-    return config;
+  stories: [
+    '../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../../web/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+  ],
+  staticDirs: ['../../web/public'],
+  framework: {
+    name: getAbsolutePath('@storybook/nextjs') as '@storybook/nextjs',
+    options: {
+      nextConfigPath: '../next.config.js',
+    },
   },
 };
 export default config;

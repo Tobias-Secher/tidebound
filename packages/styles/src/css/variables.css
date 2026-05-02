@@ -1,4 +1,142 @@
 :root {
+  /* ---------- Color — brand ------------------------------ */
+  /* Primary ink — Deep Tidal. Used the way pure black was used in
+     the template: nearly all body text, borders, buttons, icons. */
+  --tide-900: #0a2a38; /* ink, deepest */
+  --tide-800: #0f3b4f; /* primary ink (swap-in for #000) */
+  --tide-700: #14516b;
+  --tide-600: #1e6b88;
+  --tide-500: #3b8aa7;
+  --tide-400: #78b4c9;
+  --tide-300: #b5d4df;
+  --tide-200: #dae9ef;
+  --tide-100: #ecf3f6;
+  --tide-50: #f5f9fb;
+
+  /* Accent — Buoy Orange (safety-signal, high-vis). Use SPARINGLY:
+     sale tags, fin/buoy icons, promotional stripes, 1 CTA per view. */
+  --buoy-700: #b8431f;
+  --buoy-600: #d04d22;
+  --buoy-500: #e85a2a; /* canonical */
+  --buoy-400: #f07b4d;
+  --buoy-300: #f7a581;
+  --buoy-200: #fcd2bd;
+
+  /* Secondary accent — Sand / Paper. Warm neutral. Use for editorial
+     surfaces, long-form pages, "About" / sustainability modules. */
+  --sand-700: #8a7a5f;
+  --sand-500: #c6b191;
+  --sand-300: #e7dcc8;
+  --sand-100: #f5f1ea; /* paper */
+
+  /* Seafoam — soft "fresh water" tint. Background banners, filters. */
+  --foam-500: #7fc8b7;
+  --foam-300: #c2e6dd;
+  --foam-100: #e6f5f0;
+
+  /* ---------- Color — neutrals (from template) ----------- */
+  --ink-100: #0f3b4f; /* alias → tide-800; semantic "fg1" */
+  --ink-80: #26434f; /* body, fg2 */
+  --ink-60: #4b6774; /* tertiary */
+  --ink-40: #7f96a1; /* disabled / captions */
+  --ink-20: #c7d2d7; /* dividers heavy */
+  --ink-10: #dde4e7; /* dividers light (was #DDDBDC) */
+  --ink-05: #eef2f4; /* surface-alt (was #F5F4F4) */
+
+  --paper: #ffffff;
+  --paper-warm: #f5f1ea; /* = sand-100 */
+
+  /* ---------- Color — semantic --------------------------- */
+  --fg-1: var(--ink-100); /* primary text */
+  --fg-2: var(--ink-80);
+  --fg-3: var(--ink-60);
+  --fg-muted: var(--ink-40);
+  --fg-inverse: #ffffff;
+  --fg-accent: var(--buoy-500);
+
+  --bg-1: var(--paper); /* page bg */
+  --bg-2: var(--ink-05); /* alt surface (footer, cards) */
+  --bg-3: var(--paper-warm); /* editorial / sustainability */
+  --bg-ink: var(--tide-800); /* reverse surfaces */
+
+  --stroke-1: var(--ink-10); /* thin 1px divider */
+  --stroke-2: var(--tide-800); /* strong border (buttons/cards) */
+  --stroke-focus: var(--buoy-500);
+
+  --status-sale: var(--buoy-500);
+  --status-success: #2e8f6a;
+  --status-warning: #c98a1f;
+  --status-danger: #c4342f;
+
+  /* ---------- Type — families ---------------------------- */
+  --font-display: 'Geist', 'Helvetica Now Display', 'Inter', system-ui, sans-serif;
+  --font-body: 'Geist', 'Helvetica Now Text', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Atkinson Hyperlegible Mono', ui-monospace, 'JetBrains Mono', Menlo, monospace;
+
+  /* ---------- Type — scale (maps to template's Display/Text) */
+  --t-display-800: 120px; /* hero ("Maison Neue" specimen) */
+  --t-display-700: 80px;
+  --t-display-600: 64px;
+  --t-display-500: 46px; /* landing hero ("Your Cozy Era") */
+  --t-display-400: 32px; /* section titles ("People Are Talking") */
+  --t-display-300: 28px;
+  --t-display-200: 24px; /* product title */
+  --t-display-100: 20px;
+
+  --t-text-300: 16px; /* body large */
+  --t-text-200: 14px; /* button / UI label */
+  --t-text-100: 12px; /* caption / eyebrow */
+
+  /* line-heights */
+  --lh-tight: 1;
+  --lh-display: 1.2;
+  --lh-body: 1.5;
+
+  /* letter-spacing (editorial, matches template) */
+  --ls-display: -0.02em; /* tight for display */
+  --ls-body: 0;
+  --ls-caps: 0.1em; /* eyebrow uppercase labels */
+  --ls-label: 0.12em; /* button caps */
+
+  /* ---------- Spacing ------------------------------------ */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-24: 96px;
+
+  /* ---------- Radii -------------------------------------- */
+  --radius-none: 0; /* default for most surfaces (template-faithful) */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px; /* large CTA */
+  --radius-xl: 30px; /* color-chip / editorial modules */
+  --radius-pill: 999px;
+
+  /* ---------- Elevation ---------------------------------- */
+  /* Template is largely flat. Shadows are used only on modals /
+     floating nav / hover states. */
+  --shadow-sm: 0 1px 2px rgba(10, 42, 56, 0.06);
+  --shadow-md: 0 6px 18px rgba(10, 42, 56, 0.08);
+  --shadow-lg: 0 24px 60px rgba(10, 42, 56, 0.14);
+  --shadow-ring: 0 0 0 2px var(--buoy-500);
+
+  /* ---------- Motion ------------------------------------- */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.7, 0, 0.3, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 400ms;
+}
+
+:root {
   --spacing-40: 40px;
 
   /* Colors */
